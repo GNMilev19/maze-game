@@ -23,7 +23,7 @@ void printMaze(CELL** maze, int size, char free) {
     }
 }
 
-/*void createWalls(CELL** maze, int size, int cellCount) {
+void createWalls(CELL** maze, int size, int cellCount) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             if (i % 2 == 0 || j % 2 == 0) {
@@ -34,7 +34,7 @@ void printMaze(CELL** maze, int size, char free) {
             }
         }
     }
-}*/
+}
 
 /*bool dirCheck(int dir, int size, int cordY, int cordX) {
     return ((dir == 0 && cordY == 1) ||
@@ -58,7 +58,7 @@ int main()
         maze[i] = new CELL[size];
     }
 
-    //createWalls(maze, size, cellCount);
+    createWalls(maze, size, cellCount);
 
     //int unvisitedCells = 0;
     //bool cellCheck = true;
