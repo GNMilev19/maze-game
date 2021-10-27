@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="MazeAlgorithm.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MazeAlgorithm.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
