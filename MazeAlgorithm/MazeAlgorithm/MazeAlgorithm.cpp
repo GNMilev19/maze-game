@@ -158,7 +158,7 @@ int main() {
     int cordY, cordX = 1;
     int cellCount = 0;
     char free = ' ';
-    char player = '@';
+    char player = char(2);
 
     int size;
     cin >> size;
