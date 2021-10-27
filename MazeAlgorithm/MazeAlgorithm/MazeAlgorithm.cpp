@@ -92,8 +92,7 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
     }
 }
 
-void playerMovement(CELL** maze, char* input) {
-    *input = _getch();
+void playerMovement(CELL** maze) {
     switch (_getch()) {
         case KEY_UP: 
             if (maze[playerCord.playerY - 1][playerCord.playerX].isWall == false) {
@@ -206,7 +205,7 @@ int main() {
         char input;
         printMaze(maze, size, free, player);
         cout << "Use arrows to move:";
-        playerMovement(maze, &input);
+        playerMovement(maze);
         system("cls");
     }
 }
