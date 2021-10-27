@@ -1,6 +1,5 @@
 #include <iostream>
 #include <conio.h>
-#include "MazeAlgorithm.h"
 using namespace std;
 
 #define KEY_UP 72
