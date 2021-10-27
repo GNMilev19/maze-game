@@ -146,6 +146,14 @@ bool freeCheck(int dir, int size, int cordY, int cordX) {
         (dir == 3 && cordX == 1);
 }
 
+void winningText() {
+    cout << "   __     __                    _       _ \n"
+            "   \\ \\   / /                   (_)     | | \n"
+            "    \\ \\_/ /__  _   _  __      ___ _ __ | | \n"
+            "     \\   / _ \\| | | | \\ \\ /\\ / / | '_ \\| | \n"
+            "      | | (_) | |_| |  \\ V  V /| | | | |_| \n"
+            "      |_|\\___/ \\__,_|   \\_/ \\_/|_|_| |_(_) \n";
+}
 
 int main() {
     srand((unsigned int)time(NULL));
