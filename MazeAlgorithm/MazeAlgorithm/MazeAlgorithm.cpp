@@ -53,7 +53,9 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
     case 0:
         if (maze[*cordY - 2][*cordX].isVisited == false) {
             maze[*cordY - 2][*cordX].isVisited = true;
+            maze[*cordY - 2][*cordX].isWall = false;
             maze[*cordY - 1][*cordX].isVisited = true;
+            maze[*cordY - 1][*cordX].isWall = false;
             ++* unvisitedCells;
         }
         *cordY -= 2;
@@ -61,7 +63,9 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
     case 1:
         if (maze[*cordY][*cordX + 2].isVisited == false) {
             maze[*cordY][*cordX + 2].isVisited = true;
+            maze[*cordY][*cordX + 2].isWall = false;
             maze[*cordY][*cordX + 1].isVisited = true;
+            maze[*cordY][*cordX + 1].isWall = false;
             ++* unvisitedCells++;
         }
         *cordX += 2;
@@ -69,7 +73,9 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
     case 2:
         if (maze[*cordY + 2][*cordX].isVisited == false) {
             maze[*cordY + 2][*cordX].isVisited = true;
+            maze[*cordY + 2][*cordX].isWall = false;
             maze[*cordY + 1][*cordX].isVisited = true;
+            maze[*cordY + 1][*cordX].isWall = false;
             ++* unvisitedCells++;
         }
         *cordY += 2;
@@ -77,7 +83,9 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
     case 3:
         if (maze[*cordY][*cordX - 2].isVisited == false) {
             maze[*cordY][*cordX - 2].isVisited = true;
+            maze[*cordY][*cordX - 2].isWall = false;
             maze[*cordY][*cordX - 1].isVisited = true;
+            maze[*cordY][*cordX - 1].isWall = false;
             ++* unvisitedCells++;
         }
         *cordX -= 2;
@@ -89,25 +97,44 @@ void playerMovement(CELL** maze, char* input) {
     *input = _getch();
     switch (_getch()) {
         case KEY_UP: 
-            
-            maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
-            playerCord.playerY -= 1;
-            maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            if (maze[playerCord.playerY - 1][playerCord.playerX].isWall == false) {
+                maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
+                playerCord.playerY -= 1;
+                maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            }
+            else {
+                cout << "Can't move there!";
+            }
             break;
         case KEY_DOWN: 
-            maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
-            playerCord.playerY += 1;
-            maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            if (maze[playerCord.playerY + 1][playerCord.playerX].isWall == false) {
+                maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
+                playerCord.playerY += 1;
+                maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            }
+            else {
+                cout << "Can't move there!";
+            }
             break;
         case KEY_LEFT: 
-            maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
-            playerCord.playerX -= 1;
-            maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            if (maze[playerCord.playerY][playerCord.playerX - 1].isWall == false) {
+                maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
+                playerCord.playerX -= 1;
+                maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            }
+            else {
+                cout << "Can't move there!";
+            }
             break;
         case KEY_RIGHT: 
-            maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
-            playerCord.playerX += 1;
-            maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            if (maze[playerCord.playerY][playerCord.playerX + 1].isWall == false) {
+                maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
+                playerCord.playerX += 1;
+                maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            }
+            else {
+                cout << "Can't move there!";
+            }
             break;
     }
 }
@@ -118,6 +145,7 @@ bool freeCheck(int dir, int size, int cordY, int cordX) {
         (dir == 1 && cordX == size - 2) or
         (dir == 3 && cordX == 1);
 }
+
 
 int main() {
     srand((unsigned int)time(NULL));
@@ -139,9 +167,13 @@ int main() {
     }
 
     maze[cordY][cordX - 1].isPlayer = true;
+    maze[cordY][cordX - 1].isVisited = true;
     maze[size - 2][size - 1].isVisited = true;
 
     createWalls(maze, size, &cellCount);
+
+    maze[cordY][cordX - 1].isWall = false;
+    maze[size - 2][size - 1].isWall = false;
 
     bool unvisitedCheck = true;
     int unvisitedCells = 0;
@@ -161,12 +193,12 @@ int main() {
     bool playerWon = true;
     while (playerWon) {
         if (maze[size - 2][size - 1].isPlayer == true) {
-            cout << "You won!" << endl;
+            winningText();
             break;
         }
         char input;
         printMaze(maze, size, free, player);
-        cout << "Use arrows to move:" << endl;
+        cout << "Use arrows to move:";
         playerMovement(maze, &input);
         system("cls");
     }
