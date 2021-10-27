@@ -85,7 +85,32 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
     }
 }
 
-
+void playerMovement(CELL** maze, char* input) {
+    *input = _getch();
+    switch (_getch()) {
+        case KEY_UP: 
+            
+            maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
+            playerCord.playerY -= 1;
+            maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            break;
+        case KEY_DOWN: 
+            maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
+            playerCord.playerY += 1;
+            maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            break;
+        case KEY_LEFT: 
+            maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
+            playerCord.playerX -= 1;
+            maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            break;
+        case KEY_RIGHT: 
+            maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
+            playerCord.playerX += 1;
+            maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
+            break;
+    }
+}
 
 bool freeCheck(int dir, int size, int cordY, int cordX) {
     return (dir == 0 && cordY == 1) or
@@ -132,5 +157,17 @@ int main() {
 
         toVisited(maze, &cordY, &cordX, dir, &unvisitedCells);
     }
-    printMaze(maze, size, free, player);
+
+    bool playerWon = true;
+    while (playerWon) {
+        if (maze[size - 2][size - 1].isPlayer == true) {
+            cout << "You won!" << endl;
+            break;
+        }
+        char input;
+        printMaze(maze, size, free, player);
+        cout << "Use arrows to move:" << endl;
+        playerMovement(maze, &input);
+        system("cls");
+    }
 }
