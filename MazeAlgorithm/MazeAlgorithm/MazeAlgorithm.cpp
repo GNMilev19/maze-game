@@ -1,11 +1,15 @@
 #include <iostream>
 #include <conio.h>
+#include<windows.h>
+
 using namespace std;
 
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
+
+
 
 struct CELL {
     int playerY = 1;
@@ -27,7 +31,7 @@ void printMaze(CELL** maze, int size, char free, char player) {
                 cout << free << " ";
             }
             else {
-                cout << "# ";
+                cout <<char(220) << " ";
             }
         }
         cout << endl;
@@ -154,6 +158,9 @@ void winningText() {
 }
 
 int main() {
+
+    system("color 5");
+
     srand((unsigned int)time(NULL));
     int cordY, cordX = 1;
     int cellCount = 0;
@@ -161,7 +168,31 @@ int main() {
     char player = char(2);
 
     int size;
+
     cin >> size;
+
+    
+    
+    /*
+        {
+        cout << "Enter size:";
+        cin >> size;
+        system("cls");
+
+        if (size <= 0) {
+            cout << "You should enter positive number!" << endl;
+        }
+
+
+
+    } while (size <= 0);
+    */
+    
+
+
+   
+
+    //system("cls");
 
     cordY = 1;
 
