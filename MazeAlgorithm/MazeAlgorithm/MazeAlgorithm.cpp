@@ -169,30 +169,18 @@ int main() {
 
     int size;
 
-    cin >> size;
 
-    
-    
-    /*
-        {
+    do {
         cout << "Enter size:";
         cin >> size;
+
         system("cls");
 
         if (size <= 0) {
             cout << "You should enter positive number!" << endl;
         }
-
-
-
-    } while (size <= 0);
-    */
-    
-
-
-   
-
-    //system("cls");
+     } while (size <= 0);
+    system("cls");
 
     cordY = 1;
 
