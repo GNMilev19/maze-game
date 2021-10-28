@@ -31,7 +31,7 @@ void printMaze(CELL** maze, int size, char free, char player) {
                 cout << free << " ";
             }
             else {
-                cout <<char(220) << " ";
+                cout <<char(254) << " ";
             }
         }
         cout << endl;
