@@ -1,9 +1,8 @@
 #include <iostream>
-#include <conio.h>
-#include<windows.h>
+#include <conio.h>//We have this library,so that we can freely use the getch() function
 
 using namespace std;
-
+// #define is used to allow the programmer to give a name to a constant value before the program is compiled
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
@@ -21,6 +20,7 @@ struct CELL {
 
 CELL playerCord;
 
+// this function generates the maze,by previously entered size
 void printMaze(CELL** maze, int size, char free, char player) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
@@ -38,6 +38,7 @@ void printMaze(CELL** maze, int size, char free, char player) {
     }
 }
 
+// this function generates the walls of the maze
 void createWalls(CELL** maze, int size, int* cellCount) {
     for (int y = 0; y < size; y++) {
         for (int x = 0; x < size; x++) {
@@ -96,6 +97,7 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
     }
 }
 
+// this function checks if the player is trying to move towards a wall
 void playerMovement(CELL** maze) {
     switch (_getch()) {
         case KEY_UP: 
@@ -148,6 +150,7 @@ bool freeCheck(int dir, int size, int cordY, int cordX) {
         (dir == 3 && cordX == 1);
 }
 
+//This function is used to display a text,when/if you win the game.
 void winningText() {
     cout << "   __     __                    _       _ \n"
             "   \\ \\   / /                   (_)     | | \n"
@@ -157,9 +160,10 @@ void winningText() {
             "      |_|\\___/ \\__,_|   \\_/ \\_/|_|_| |_(_) \n";
 }
 
+// this is the main function
 int main() {
 
-    system("color 5");
+    system("color 4");
 
     srand((unsigned int)time(NULL));
     int cordY, cordX = 1;
