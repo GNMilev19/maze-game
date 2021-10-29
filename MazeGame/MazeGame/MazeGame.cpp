@@ -159,10 +159,9 @@ void winningText() {
 
 // this is the main function
 int main() {
-
-    system("color 4");
-
+    system("color 5");
     srand((unsigned int)time(NULL));
+
     int cordY, cordX = 1;
     int cellCount = 0;
     char free = ' ';
