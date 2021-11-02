@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 #include <conio.h>//We have this library,so that we can freely use the getch() function
 using namespace std;
 
@@ -16,6 +17,77 @@ struct CELL {
     bool isPlayer = false;
 };
 CELL playerCord;
+
+void color(int color) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+void gotoxy(int x, int y) {
+    COORD c;
+    c.X = x;
+    c.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
+}
+
+void menu() {
+
+    int Set[] = { 7,7,7 }; //default color of menu
+    int counter = 2;
+    char key;
+
+    for (int i = 0;;) {
+
+        gotoxy(30, 5);
+        color(Set[0]);
+        cout << "1. Start game";
+
+        gotoxy(30, 6);
+        color(Set[1]);
+        cout << "2. Settings";
+
+        gotoxy(30, 7);
+        color(Set[2]);
+        cout << "3. Menu";
+
+        key = _getch();
+
+        if (key == 72 && (counter >= 2 && counter <= 3)) { //72 = up arrow key
+            counter--;
+        }
+        if (key == 80 && (counter >= 1 && counter <= 2)) { //80 = down arrow key
+            counter++;
+        }
+        if (key == '\r') { //carriage return = enter key
+            if (counter == 1)
+            {
+                cout << "Menu 1 is open";
+            }
+            if (counter == 2)
+            {
+                cout << "Menu 2 is open";
+            }
+            if (counter == 3)
+            {
+                cout << "Menu 3 is open";
+            }
+        }
+        Set[0] = 7; // white color
+        Set[1] = 7;
+        Set[2] = 7;
+        if (counter == 1)
+        {
+            Set[0] = 12; //color red
+        }
+        if (counter == 2)
+        {
+            Set[1] = 12; //color red
+        }
+        if (counter == 3)
+        {
+            Set[2] = 12; //color red
+        }
+    }
+}
 
 // this function generates the maze,by previously entered size
 void printMaze(CELL** maze, int size, char free, char player) {
@@ -157,6 +229,8 @@ void winningText() {
         "      |_|\\___/ \\__,_|   \\_/ \\_/|_|_| |_(_) \n";
 }
 
+
+
 // this is the main function
 int main() {
     system("color 5");
@@ -168,7 +242,8 @@ int main() {
     char player = char(2);
 
     int size;
-
+    
+    menu();
 
     do {
         cout << "Enter size:";
