@@ -191,7 +191,7 @@ void winningText() {
 
 // this is the main function
 int main() {
-    system("color 5");
+    system("color 4");
     srand((unsigned int)time(NULL));
 
     int cordY, cordX = 1;
