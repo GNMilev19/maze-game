@@ -1,6 +1,7 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>//We have this library,so that we can freely use the getch() function
+#include <string>
 using namespace std;
 
 // #define is used to allow the programmer to give a name to a constant value before the program is compiled
@@ -30,63 +31,18 @@ void gotoxy(int x, int y) {
 }
 
 void menu() {
-
-    int Set[] = { 7,7,7 }; //default color of menu
-    int counter = 2;
-    char key;
-
-    for (int i = 0;;) {
-
-        gotoxy(30, 5);
-        color(Set[0]);
-        cout << "1. Start game";
-
-        gotoxy(30, 6);
-        color(Set[1]);
-        cout << "2. Settings";
-
-        gotoxy(30, 7);
-        color(Set[2]);
-        cout << "3. Menu";
-
-        key = _getch();
-
-        if (key == 72 && (counter >= 2 && counter <= 3)) { //72 = up arrow key
-            counter--;
-        }
-        if (key == 80 && (counter >= 1 && counter <= 2)) { //80 = down arrow key
-            counter++;
-        }
-        if (key == '\r') { //carriage return = enter key
-            if (counter == 1)
-            {
-                cout << "Menu 1 is open";
-            }
-            if (counter == 2)
-            {
-                cout << "Menu 2 is open";
-            }
-            if (counter == 3)
-            {
-                cout << "Menu 3 is open";
-            }
-        }
-        Set[0] = 7; // white color
-        Set[1] = 7;
-        Set[2] = 7;
-        if (counter == 1)
-        {
-            Set[0] = 12; //color red
-        }
-        if (counter == 2)
-        {
-            Set[1] = 12; //color red
-        }
-        if (counter == 3)
-        {
-            Set[2] = 12; //color red
-        }
-    }
+    cout << "*-------------------------------------*" << endl;
+    cout << ":            The Maze Game            :" << endl;
+    cout << ":         by Team Anti-Xenon          :" << endl;
+    cout << ":    (Georgi,Stanimir,Zhivko,Vasil)   :" << endl;
+    cout << "*-------------------------------------*" << endl;
+    cout << ":                                     :" << endl;
+    cout << ":                                     :" << endl;
+    cout << ":        Welcome to our simple        :" << endl;
+    cout << ":             Maze game.              :" << endl;
+    cout << ":                                     :" << endl;
+    cout << ":                                     :" << endl;
+    cout << "*-------------------------------------*" << endl;
 }
 
 // this function generates the maze,by previously entered size
@@ -219,7 +175,7 @@ bool freeCheck(int dir, int size, int cordY, int cordX) {
         (dir == 3 && cordX == 1);
 }
 
-//This function is used to display a text,when/if you win the game.
+//This function is used to display a text,when you win the game.
 void winningText() {
     cout << "   __     __                    _       _ \n"
         "   \\ \\   / /                   (_)     | | \n"
@@ -240,13 +196,14 @@ int main() {
     int cellCount = 0;
     char free = ' ';
     char player = char(2);
-
+    string username;
     int size;
-    
-    menu();
 
+    menu();
+    cout << "Enter your username: ";
+    getline(cin, username);
+    cout << "Enter the size of the maze: ";
     do {
-        cout << "Enter size:";
         cin >> size;
 
         system("cls");
@@ -293,12 +250,17 @@ int main() {
     bool playerWon = true;
     while (playerWon) {
         if (maze[size - 2][size - 1].isPlayer == true) {
+            system("cls");
             winningText();
             break;
         }
         char input;
         printMaze(maze, size, free, player);
-        cout << "Use arrows to move:";
+        cout << "\n\n\n";
+        cout << "*--------------------------*" << endl;
+        cout << "|       Instructions:      |" << endl;
+        cout << "|  Use the arrows to move  |" << endl;
+        cout << "*--------------------------*";
         playerMovement(maze);
         system("cls");
     }
