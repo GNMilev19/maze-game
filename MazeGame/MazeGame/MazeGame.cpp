@@ -208,6 +208,10 @@ int main() {
         cout << "Enter a username below 10 characters! ";
         getline(cin, username);
     }
+    if (username.length() <= 2) {
+        cout << "Enter a username of 3 and above characters! ";
+        getline(cin, username);
+    }
     do {
         cout << "Enter the size of the maze: ";
         cin >> size;
