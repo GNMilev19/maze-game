@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>//We have this library,so that we can freely use the getch() function
-#include <string>
+#include <string>//We have this library, so that we can use strings
 using namespace std;
 
 // #define is used to allow the programmer to give a name to a constant value before the program is compiled
@@ -177,12 +177,14 @@ bool freeCheck(int dir, int size, int cordY, int cordX) {
 
 //This function is used to display a text,when you win the game.
 void winningText() {
-    cout << "   __     __                    _       _ \n"
-        "   \\ \\   / /                   (_)     | | \n"
-        "    \\ \\_/ /__  _   _  __      ___ _ __ | | \n"
-        "     \\   / _ \\| | | | \\ \\ /\\ / / | '_ \\| | \n"
-        "      | | (_) | |_| |  \\ V  V /| | | | |_| \n"
-        "      |_|\\___/ \\__,_|   \\_/ \\_/|_|_| |_(_) \n";
+    cout << "*---------------------------------------------*" << endl;
+    cout << "|   __     __                    _       _    |\n"
+        "|   \\ \\   / /                   (_)     | |   |\n"
+        "|    \\ \\_/ /__  _   _  __      ___ _ __ | |   |\n"
+        "|     \\   / _ \\| | | | \\ \\ /\\ / / | '_ \\| |   |\n"
+        "|      | | (_) | |_| |  \\ V  V /| | | | |_|   |\n"
+        "|      |_|\\___/ \\__,_|   \\_/ \\_/|_|_| |_(_)   |\n";
+    cout << "*---------------------------------------------*" << endl;
 }
 
 
@@ -202,17 +204,24 @@ int main() {
     menu();
     cout << "Enter your username: ";
     getline(cin, username);
-    cout << "Enter the size of the maze: ";
+    if (username.length() > 10) {
+        cout << "Enter a username below 10 characters! ";
+        getline(cin, username);
+    }
     do {
+        cout << "Enter the size of the maze: ";
         cin >> size;
 
-        system("cls");
-
-        if (size <= 0) {
-            cout << "You should enter positive number!" << endl;
+        if (size <= 1) {
+            cout << "Enter a number of 2 and above! ";
+            cin >> size;
         }
-    } while (size <= 0);
+    } while (size <= 1);
+
     system("cls");
+    cout << "*----------------------------------------------*" << endl;
+    cout << "|Okay, " << username << ", lets see how well will you go.|"<< endl;
+    cout << "*----------------------------------------------*" << endl;
 
     cordY = 1;
 
