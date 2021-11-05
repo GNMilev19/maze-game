@@ -186,7 +186,54 @@ void winningText() {
         "|      |_|\\___/ \\__,_|   \\_/ \\_/|_|_| |_(_)   |\n";
     cout << "*---------------------------------------------*" << endl;
 }
+void getUserName(string& userName)
+{
+    //Declare appropriate variables.
+    int strLength, counter = 0;
 
+    //Asks the user to type his/her name to proceed.
+    cout << "*-------------------------------------*" << endl;
+    cout << ":       Please enter your name.       :" << endl;
+    cout << ":                                     :" << endl;
+    cout << "*-------------------------------------*" << endl;
+    getline(cin, userName);
+
+    //Finding how many letters are there in the user input.
+    strLength = userName.length();
+
+    //Input Validation.
+    while (counter < strLength || counter == 0)
+    {
+        //Validation. Only a letter and one word is allowed.
+        if (!isalpha(userName[counter]))
+        {
+            system("cls");
+            cout << "*-------------------------------------*" << endl;
+            cout << ":      Please enter a valid name      :" << endl;
+            cout << ":      containing one word only.      :" << endl;
+            cout << "*-------------------------------------*" << endl;
+            getline(cin, userName);
+            strLength = userName.length();
+            counter = 0;
+        }
+        //Validation. The name cannot have more than 10 letters.
+        else if (strLength > 10)
+        {
+            system("cls");
+            cout << "*-------------------------------------*" << endl;
+            cout << ": Your name cannot exceed 10 letters. :" << endl;
+            cout << ":     Please type another name.       :" << endl;
+            cout << "*-------------------------------------*" << endl;
+            getline(cin, userName);
+            strLength = userName.length();
+            counter = 0;
+        }
+        else
+        {
+            counter++;
+        }
+    }
+}
 
 
 // this is the main function
@@ -198,20 +245,11 @@ int main() {
     int cellCount = 0;
     char free = ' ';
     char player = char(2);
-    string username;
     int size;
-
+    string name;
+    getUserName(name);
+    system("cls");
     menu();
-    cout << "Enter your username: ";
-    getline(cin, username);
-    if (username.length() > 10) {
-        cout << "Enter a username below 10 characters! ";
-        getline(cin, username);
-    }
-    if (username.length() <= 2) {
-        cout << "Enter a username of 3 and above characters! ";
-        getline(cin, username);
-    }
     do {
         cout << "Enter the size of the maze: ";
         cin >> size;
@@ -221,11 +259,8 @@ int main() {
             cin >> size;
         }
     } while (size <= 1);
-
     system("cls");
-    cout << "*----------------------------------------------*" << endl;
-    cout << "|Okay, " << username << ", lets see how well will you go.|"<< endl;
-    cout << "*----------------------------------------------*" << endl;
+    cout << "Okay, " << name << " let's see how well will you go" << endl;
 
     cordY = 1;
 
