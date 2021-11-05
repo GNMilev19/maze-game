@@ -188,51 +188,52 @@ void winningText() {
         "|      |_|\\___/ \\__,_|   \\_/ \\_/|_|_| |_(_)   |\n";
     cout << "*---------------------------------------------*" << endl;
 }
-void getUserName(string& userName)
+
+/*void getusername(string& username)
 {
-    //Declare appropriate variables.
-    int strLength, counter = 0;
+    //declare appropriate variables.
+    int strlength, counter = 0;
 
-    //Asks the user to type his/her name to proceed.
+    //asks the user to type his/her name to proceed.
     cout << "*-------------------------------------*" << endl;
     cout << ":                                     :" << endl;
-    cout << ":       Please enter your name        :" << endl;
+    cout << ":       please enter your name        :" << endl;
     cout << ":                                     :" << endl;
     cout << "*-------------------------------------*" << endl;
-    getline(cin, userName);
+    getline(cin, username);
 
-    //Getting usernames length
-    strLength = userName.length();
+    //getting usernames length
+    strlength = username.length();
 
-    //Input Validation.
-    while (counter < strLength || counter == 0)
+    //input validation.
+    while (counter < strlength || counter == 0)
     {
-        //Validation. Only a letter and one word is allowed.
-        if (!isalpha(userName[counter]))
+        //validation. only a letter and one word is allowed.
+        if (!isalpha(username[counter]))
         {
             system("cls");
             cout << "*-------------------------------------*" << endl;
             cout << ":                                     :" << endl;
-            cout << ":      Please enter a valid name      :" << endl;
+            cout << ":      please enter a valid name      :" << endl;
             cout << ":      containing one word only.      :" << endl;
             cout << ":                                     :" << endl;
             cout << "*-------------------------------------*" << endl;
-            getline(cin, userName);
-            strLength = userName.length();
+            getline(cin, username);
+            strlength = username.length();
             counter = 0;
         }
-        //Validation. The name cannot have more than 10 letters.
-        else if (strLength > 10)
+        //validation. the name cannot have more than 10 letters.
+        else if (strlength > 10)
         {
             system("cls");
             cout << "*-------------------------------------*" << endl;
             cout << ":                                     :" << endl;
-            cout << ": Your name cannot exceed 10 letters. :" << endl;
-            cout << ":     Please type another name.       :" << endl;
+            cout << ": your name cannot exceed 10 letters. :" << endl;
+            cout << ":     please type another name.       :" << endl;
             cout << ":                                     :" << endl;
             cout << "*-------------------------------------*" << endl;
-            getline(cin, userName);
-            strLength = userName.length();
+            getline(cin, username);
+            strlength = username.length();
             counter = 0;
         }
         else
@@ -240,7 +241,7 @@ void getUserName(string& userName)
             counter++;
         }
     }
-}
+}*/
 
 // this is the main function
 int main() {
@@ -253,7 +254,7 @@ int main() {
     char player = char(2);
     int size;
     string name;
-    getUserName(name);
+    //getUserName(name);
     system("cls");
     menu();
     do {
