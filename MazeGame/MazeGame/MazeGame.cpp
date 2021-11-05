@@ -134,6 +134,7 @@ void playerMovement(CELL** maze) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
         }
         else {
+            cout << endl;
             cout << "Can't move there!";
         }
         break;
@@ -146,6 +147,7 @@ void playerMovement(CELL** maze) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
         }
         else {
+            cout << endl;
             cout << "Can't move there!";
         }
         break;
@@ -158,6 +160,7 @@ void playerMovement(CELL** maze) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
         }
         else {
+            cout << endl;
             cout << "Can't move there!";
         }
         break;
@@ -170,6 +173,7 @@ void playerMovement(CELL** maze) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
         }
         else {
+            cout << endl;
             cout << "Can't move there!";
         }
         break;
@@ -285,8 +289,8 @@ int main() {
     } while (size <= 1);
     system("cls");
     cout << endl;
-    cout << "Okay, let's see how well will you go" << endl;
-    cout << "------------------------------------" << endl;
+    cout << "Okay, let's see if you can do it!" << endl;
+    cout << "---------------------------------" << endl;
     cout << endl;
     do {
         cordY = 1;
@@ -334,7 +338,8 @@ int main() {
             cout << "*--------------------------*" << endl;
             cout << "|                          |" << endl;
             cout << "|       Instructions:      |" << endl;
-            cout << "|  Use the arrows to move  |" << endl;
+            cout << "|    Use the arrows or     |" << endl;
+            cout << "|         W,A,S,D          |" << endl;
             cout << "|                          |" << endl;
             cout << "*--------------------------*";
             playerMovement(maze);
