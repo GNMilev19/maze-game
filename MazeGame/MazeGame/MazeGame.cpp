@@ -5,10 +5,10 @@
 using namespace std;
 
 // #define is used to allow us to give a name to a constant value before the program is compiled
-#define KEY_UP 72, 119
-#define KEY_DOWN 80, 115
-#define KEY_LEFT 75, 97
-#define KEY_RIGHT 77, 100
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
 
 struct CELL {
     int playerY = 1;
@@ -120,6 +120,8 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
 void playerMovement(CELL** maze) {
     switch (_getch()) {
         case KEY_UP:
+        case 119:
+        case 87:
         if (maze[playerCord.playerY - 1][playerCord.playerX].isWall == false) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
             playerCord.playerY -= 1;
@@ -130,6 +132,8 @@ void playerMovement(CELL** maze) {
         }
         break;
     case KEY_DOWN:
+    case 115:
+    case 83:
         if (maze[playerCord.playerY + 1][playerCord.playerX].isWall == false) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
             playerCord.playerY += 1;
@@ -140,6 +144,8 @@ void playerMovement(CELL** maze) {
         }
         break;
     case KEY_LEFT:
+    case 97:
+    case 65:
         if (maze[playerCord.playerY][playerCord.playerX - 1].isWall == false) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
             playerCord.playerX -= 1;
@@ -150,6 +156,8 @@ void playerMovement(CELL** maze) {
         }
         break;
     case KEY_RIGHT:
+    case 100:
+    case 68:
         if (maze[playerCord.playerY][playerCord.playerX + 1].isWall == false) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
             playerCord.playerX += 1;
@@ -234,7 +242,6 @@ void getUserName(string& userName)
     }
 }
 
-
 // this is the main function
 int main() {
     system("color 5");
@@ -301,7 +308,6 @@ int main() {
             winningText();
             break;
         }
-        char input;
         printMaze(maze, size, free, player);
         cout << "\n";
         cout << "*--------------------------*" << endl;
