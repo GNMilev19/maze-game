@@ -267,7 +267,11 @@ int main() {
         menu(continu);
         if (continu == "y" || continu == "Y") {
             system("cls");
-            cout << "Enter the size of the maze: ";
+            cout << "*----------------------------*" << endl;
+            cout << "|                            |" << endl;
+            cout << "|Enter the size of the maze: |" << endl;
+            cout << "|                            |" << endl;
+            cout << "*----------------------------*" << endl;
             cin >> size;
 
             if (size <= 1) {
@@ -280,7 +284,10 @@ int main() {
         }
     } while (size <= 1);
     system("cls");
-    cout << "Okay, " << name << " let's see how well will you go" << endl;
+    cout << endl;
+    cout << "Okay, let's see how well will you go" << endl;
+    cout << "------------------------------------" << endl;
+    cout << endl;
     do {
         cordY = 1;
 
