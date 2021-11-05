@@ -325,8 +325,10 @@ int main() {
             printMaze(maze, size, free, player);
             cout << "\n";
             cout << "*--------------------------*" << endl;
+            cout << "|                          |" << endl;
             cout << "|       Instructions:      |" << endl;
             cout << "|  Use the arrows to move  |" << endl;
+            cout << "|                          |" << endl;
             cout << "*--------------------------*";
             playerMovement(maze);
             system("cls");
