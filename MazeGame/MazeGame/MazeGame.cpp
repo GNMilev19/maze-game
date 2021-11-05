@@ -30,13 +30,19 @@ void gotoxy(int x, int y) {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
-void menu() {
+void menu(string& continu) {
     cout << "*-------------------------------------*" << endl;
     cout << ":                                     :" << endl;
     cout << ":            The Maze Game            :" << endl;
     cout << ":         by Team Anti-Xenon          :" << endl;
     cout << ":                                     :" << endl;
+    cout << ":                                     :" << endl;
+    cout << ":        Press y/Y to continue        :" << endl;
+    cout << ":         Press anything else         :" << endl;
+    cout << ":              to quit                :" << endl;
+    cout << ":                                     :" << endl;
     cout << "*-------------------------------------*" << endl;
+    getline(cin, continu);
 }
 
 // this function generates the maze,by previously entered size
@@ -119,9 +125,9 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
 // this function checks if the player is trying to move towards a wall
 void playerMovement(CELL** maze) {
     switch (_getch()) {
-        case KEY_UP:
-        case 119:
-        case 87:
+    case KEY_UP:
+    case 119:
+    case 87:
         if (maze[playerCord.playerY - 1][playerCord.playerX].isWall == false) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
             playerCord.playerY -= 1;
@@ -188,51 +194,52 @@ void winningText() {
         "|      |_|\\___/ \\__,_|   \\_/ \\_/|_|_| |_(_)   |\n";
     cout << "*---------------------------------------------*" << endl;
 }
-void getUserName(string& userName)
+
+/*void getusername(string& username)
 {
-    //Declare appropriate variables.
-    int strLength, counter = 0;
+    //declare appropriate variables.
+    int strlength, counter = 0;
 
-    //Asks the user to type his/her name to proceed.
+    //asks the user to type his/her name to proceed.
     cout << "*-------------------------------------*" << endl;
     cout << ":                                     :" << endl;
-    cout << ":       Please enter your name        :" << endl;
+    cout << ":       please enter your name        :" << endl;
     cout << ":                                     :" << endl;
     cout << "*-------------------------------------*" << endl;
-    getline(cin, userName);
+    getline(cin, username);
 
-    //Getting usernames length
-    strLength = userName.length();
+    //getting usernames length
+    strlength = username.length();
 
-    //Input Validation.
-    while (counter < strLength || counter == 0)
+    //input validation.
+    while (counter < strlength || counter == 0)
     {
-        //Validation. Only a letter and one word is allowed.
-        if (!isalpha(userName[counter]))
+        //validation. only a letter and one word is allowed.
+        if (!isalpha(username[counter]))
         {
             system("cls");
             cout << "*-------------------------------------*" << endl;
             cout << ":                                     :" << endl;
-            cout << ":      Please enter a valid name      :" << endl;
+            cout << ":      please enter a valid name      :" << endl;
             cout << ":      containing one word only.      :" << endl;
             cout << ":                                     :" << endl;
             cout << "*-------------------------------------*" << endl;
-            getline(cin, userName);
-            strLength = userName.length();
+            getline(cin, username);
+            strlength = username.length();
             counter = 0;
         }
-        //Validation. The name cannot have more than 10 letters.
-        else if (strLength > 10)
+        //validation. the name cannot have more than 10 letters.
+        else if (strlength > 10)
         {
             system("cls");
             cout << "*-------------------------------------*" << endl;
             cout << ":                                     :" << endl;
-            cout << ": Your name cannot exceed 10 letters. :" << endl;
-            cout << ":     Please type another name.       :" << endl;
+            cout << ": your name cannot exceed 10 letters. :" << endl;
+            cout << ":     please type another name.       :" << endl;
             cout << ":                                     :" << endl;
             cout << "*-------------------------------------*" << endl;
-            getline(cin, userName);
-            strLength = userName.length();
+            getline(cin, username);
+            strlength = username.length();
             counter = 0;
         }
         else
@@ -240,7 +247,7 @@ void getUserName(string& userName)
             counter++;
         }
     }
-}
+}*/
 
 // this is the main function
 int main() {
@@ -252,69 +259,77 @@ int main() {
     char free = ' ';
     char player = char(2);
     int size;
+    string continu = "y";
     string name;
-    getUserName(name);
+    //getUserName(name);
     system("cls");
-    menu();
     do {
-        cout << "Enter the size of the maze: ";
-        cin >> size;
-
-        if (size <= 1) {
-            cout << "Enter a number of 2 and above! ";
+        menu(continu);
+        if (continu == "y" || continu == "Y") {
+            system("cls");
+            cout << "Enter the size of the maze: ";
             cin >> size;
+
+            if (size <= 1) {
+                cout << "Enter a number of 2 and above! ";
+                cin >> size;
+            }
+        }
+        else {
+            exit(0);
         }
     } while (size <= 1);
     system("cls");
     cout << "Okay, " << name << " let's see how well will you go" << endl;
+    do {
+        cordY = 1;
 
-    cordY = 1;
+        size = size * 2 + 1;
 
-    size = size * 2 + 1;
-
-    CELL** maze = new CELL * [size];
-    for (int i = 0; i < size; i++) {
-        maze[i] = new CELL[size];
-    }
-
-    maze[cordY][cordX - 1].isPlayer = true;
-    maze[cordY][cordX - 1].isVisited = true;
-    maze[size - 2][size - 1].isVisited = true;
-
-    createWalls(maze, size, &cellCount);
-
-    maze[cordY][cordX - 1].isWall = false;
-    maze[size - 2][size - 1].isWall = false;
-
-    bool unvisitedCheck = true;
-    int unvisitedCells = 0;
-
-    while (unvisitedCheck) {
-        if (unvisitedCells == cellCount) {
-            unvisitedCheck = false;
+        CELL** maze = new CELL * [size];
+        for (int i = 0; i < size; i++) {
+            maze[i] = new CELL[size];
         }
-        int dir;
-        do {
-            dir = rand() % 4;
-        } while (freeCheck(dir, size, cordY, cordX));
 
-        toVisited(maze, &cordY, &cordX, dir, &unvisitedCells);
-    }
+        maze[cordY][cordX - 1].isPlayer = true;
+        maze[cordY][cordX - 1].isVisited = true;
+        maze[size - 2][size - 1].isVisited = true;
 
-    bool playerWon = true;
-    while (playerWon) {
-        if (maze[size - 2][size - 1].isPlayer == true) {
+        createWalls(maze, size, &cellCount);
+
+        maze[cordY][cordX - 1].isWall = false;
+        maze[size - 2][size - 1].isWall = false;
+
+        bool unvisitedCheck = true;
+        int unvisitedCells = 0;
+
+        while (unvisitedCheck) {
+            if (unvisitedCells == cellCount) {
+                unvisitedCheck = false;
+            }
+            int dir;
+            do {
+                dir = rand() % 4;
+            } while (freeCheck(dir, size, cordY, cordX));
+
+            toVisited(maze, &cordY, &cordX, dir, &unvisitedCells);
+        }
+
+        bool playerWon = true;
+        while (playerWon) {
+            if (maze[size - 2][size - 1].isPlayer == true) {
+                system("cls");
+                winningText();
+                exit(0);
+            }
+            printMaze(maze, size, free, player);
+            cout << "\n";
+            cout << "*--------------------------*" << endl;
+            cout << "|       Instructions:      |" << endl;
+            cout << "|  Use the arrows to move  |" << endl;
+            cout << "*--------------------------*";
+            playerMovement(maze);
             system("cls");
-            winningText();
-            break;
         }
-        printMaze(maze, size, free, player);
-        cout << "\n";
-        cout << "*--------------------------*" << endl;
-        cout << "|       Instructions:      |" << endl;
-        cout << "|  Use the arrows to move  |" << endl;
-        cout << "*--------------------------*";
-        playerMovement(maze);
-        system("cls");
-    }
+    } while (continu == "y" || continu == "Y");
 }
