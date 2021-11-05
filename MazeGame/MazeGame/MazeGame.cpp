@@ -1,14 +1,14 @@
 #include <iostream>
 #include <windows.h>
-#include <conio.h>//We have this library,so that we can freely use the getch() function
-#include <string>//We have this library, so that we can use strings
+#include <conio.h> //For _getch usage
+#include <string> //For string methods
 using namespace std;
 
-// #define is used to allow the programmer to give a name to a constant value before the program is compiled
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
+// #define is used to allow us to give a name to a constant value before the program is compiled
+#define KEY_UP 72, 119
+#define KEY_DOWN 80, 115
+#define KEY_LEFT 75, 97
+#define KEY_RIGHT 77, 100
 
 struct CELL {
     int playerY = 1;
@@ -32,15 +32,9 @@ void gotoxy(int x, int y) {
 
 void menu() {
     cout << "*-------------------------------------*" << endl;
+    cout << ":                                     :" << endl;
     cout << ":            The Maze Game            :" << endl;
     cout << ":         by Team Anti-Xenon          :" << endl;
-    cout << ":    (Georgi,Stanimir,Zhivko,Vasil)   :" << endl;
-    cout << "*-------------------------------------*" << endl;
-    cout << ":                                     :" << endl;
-    cout << ":                                     :" << endl;
-    cout << ":        Welcome to our simple        :" << endl;
-    cout << ":             Maze game.              :" << endl;
-    cout << ":                                     :" << endl;
     cout << ":                                     :" << endl;
     cout << "*-------------------------------------*" << endl;
 }
@@ -125,7 +119,7 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
 // this function checks if the player is trying to move towards a wall
 void playerMovement(CELL** maze) {
     switch (_getch()) {
-    case KEY_UP:
+        case KEY_UP:
         if (maze[playerCord.playerY - 1][playerCord.playerX].isWall == false) {
             maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
             playerCord.playerY -= 1;
@@ -175,7 +169,7 @@ bool freeCheck(int dir, int size, int cordY, int cordX) {
         (dir == 3 && cordX == 1);
 }
 
-//This function is used to display a text,when you win the game.
+//prints Winning text
 void winningText() {
     cout << "*---------------------------------------------*" << endl;
     cout << "|   __     __                    _       _    |\n"
@@ -193,12 +187,13 @@ void getUserName(string& userName)
 
     //Asks the user to type his/her name to proceed.
     cout << "*-------------------------------------*" << endl;
-    cout << ":       Please enter your name.       :" << endl;
+    cout << ":                                     :" << endl;
+    cout << ":       Please enter your name        :" << endl;
     cout << ":                                     :" << endl;
     cout << "*-------------------------------------*" << endl;
     getline(cin, userName);
 
-    //Finding how many letters are there in the user input.
+    //Getting usernames length
     strLength = userName.length();
 
     //Input Validation.
@@ -209,8 +204,10 @@ void getUserName(string& userName)
         {
             system("cls");
             cout << "*-------------------------------------*" << endl;
+            cout << ":                                     :" << endl;
             cout << ":      Please enter a valid name      :" << endl;
             cout << ":      containing one word only.      :" << endl;
+            cout << ":                                     :" << endl;
             cout << "*-------------------------------------*" << endl;
             getline(cin, userName);
             strLength = userName.length();
@@ -221,8 +218,10 @@ void getUserName(string& userName)
         {
             system("cls");
             cout << "*-------------------------------------*" << endl;
+            cout << ":                                     :" << endl;
             cout << ": Your name cannot exceed 10 letters. :" << endl;
             cout << ":     Please type another name.       :" << endl;
+            cout << ":                                     :" << endl;
             cout << "*-------------------------------------*" << endl;
             getline(cin, userName);
             strLength = userName.length();
@@ -238,7 +237,7 @@ void getUserName(string& userName)
 
 // this is the main function
 int main() {
-    system("color 4");
+    system("color 5");
     srand((unsigned int)time(NULL));
 
     int cordY, cordX = 1;
@@ -304,7 +303,7 @@ int main() {
         }
         char input;
         printMaze(maze, size, free, player);
-        cout << "\n\n\n";
+        cout << "\n";
         cout << "*--------------------------*" << endl;
         cout << "|       Instructions:      |" << endl;
         cout << "|  Use the arrows to move  |" << endl;
