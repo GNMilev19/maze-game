@@ -173,7 +173,103 @@ int chooseColor(string arrow, int arrowPos) {
 	}
 }
 
-int chooseOptions(string arrow, int arrowPos) {
+void characterMenu(string arrow, int arrowPos) {
+
+	cout << "*-------------------------------------------------------------------------------------*" << endl;
+	cout << ":                                                                                     :" << endl;
+	cout << ":  _______  __   __  _______  ______    _______  _______  _______  _______  ______    :" << endl;
+	cout << ": |       ||  | |  ||   _   ||    _ |  |   _   ||       ||       ||       ||    _ |   :" << endl;
+	cout << ": |       ||  |_|  ||  |_|  ||   | ||  |  |_|  ||       ||_     _||    ___||   | ||   :" << endl;
+	cout << ": |       ||       ||       ||   |_||_ |       ||       |  |   |  |   |___ |   |_||_  :" << endl;
+	cout << ": |      _||       ||       ||    __  ||       ||      _|  |   |  |    ___||    __  | :" << endl;
+	cout << ": |     |_ |   _   ||   _   ||   |  | ||   _   ||     |_   |   |  |   |___ |   |  | | :" << endl;
+	cout << ": |_______||__| |__||__| |__||___|  |_||__| |__||_______|  |___|  |_______||___|  |_| :" << endl;
+	cout << ":                                                                                     :" << endl;
+	cout << ":                                                                                     :" << endl;
+	if (arrowPos == 0)
+		cout << ":                                      " << arrow << "  " << char(1) << "                                         :" << endl;
+	else
+		cout << ":                                           " << char(1) << "                                         :" << endl;
+	cout << ":                                                                                     :" << endl;
+	if (arrowPos == 1)
+		cout << ":                                      " << arrow << "  " << char(2) << "                                         :" << endl;
+	else
+		cout << ":                                           " << char(2) << "                                         :" << endl;
+	cout << ":                                                                                     :" << endl;
+	if (arrowPos == 2)
+		cout << ":                                      " << arrow << "  " << char(3) << "                                         :" << endl;
+	else
+		cout << ":                                           " << char(3) << "                                         :" << endl;
+	cout << ":                                                                                     :" << endl;
+	if (arrowPos == 3)
+		cout << ":                                      " << arrow << "  " << char(4) << "                                         :" << endl;
+	else
+		cout << ":                                           " << char(4) << "                                         :" << endl;
+	cout << ":                                                                                     :" << endl;
+	if (arrowPos == 4)
+		cout << ":                                      " << arrow << "  " << char(5) << "                                         :" << endl;
+	else
+		cout << ":                                           " << char(5) << "                                         :" << endl;
+	cout << ":                                                                                     :" << endl;
+	if (arrowPos == 5)
+		cout << ":                                      " << arrow << "  " << char(6) << "                                         :" << endl;
+	else
+		cout << ":                                           " << char(6) << "                                         :" << endl;
+	cout << ":                                                                                     :" << endl;
+	if (arrowPos == 6)
+		cout << ":                                      " << arrow << "  Back                                      :" << endl;
+	else
+		cout << ":                                           Back                                      :" << endl;
+	cout << ":                                                                                     :" << endl;
+	cout << ":                                Use Space or Enter to choose                         :" << endl;
+	cout << ":                                                                                     :" << endl;
+	cout << "*-------------------------------------------------------------------------------------*" << endl;
+}
+
+int chooseCharacter(string arrow, int arrowPos, char* player) {
+	arrowPos = 0;
+	while (1) {
+		characterMenu(arrow, arrowPos);
+		switch (_getch()) {
+		case 32:
+		case '\r':
+			if (arrowPos == 0) {
+				*player = char(1);
+			}
+			else if (arrowPos == 1) {
+				*player = char(2);
+			}
+			else if (arrowPos == 2) {
+				*player = char(3);
+			}
+			else if (arrowPos == 3) {
+				*player = char(4);
+			}
+			else if (arrowPos == 4) {
+				*player = char(5);
+			}
+			else if (arrowPos == 5) {
+				*player = char(6);
+			}
+			else if (arrowPos == 6) {
+				system("cls");
+				return 0;
+			}
+			break;
+		case KEY_UP:
+			if (arrowPos != 0)
+				arrowPos--;
+			break;
+		case KEY_DOWN:
+			if (arrowPos != 6)
+				arrowPos++;
+			break;
+		}
+		system("cls");
+	}
+}
+
+int chooseOptions(string arrow, int arrowPos, char* player) {
 	arrowPos = 0;
 	while (1) {
 		options(arrow, arrowPos);
@@ -186,7 +282,9 @@ int chooseOptions(string arrow, int arrowPos) {
 				arrowPos = 0;
 			}
 			else if (arrowPos == 1) {
-				return 0;
+				system("cls");
+				chooseCharacter(arrow, arrowPos, player);
+				arrowPos = 0;
 			}
 			else if (arrowPos == 2) {
 				system("cls");
@@ -206,8 +304,7 @@ int chooseOptions(string arrow, int arrowPos) {
 	}
 }
 
-int chooseMenu(string arrow, int arrowPos) {
-	bool choose = true;
+int chooseMenu(string arrow, int arrowPos, char* player) {
 	while (1) {
 		menu(arrow, arrowPos);
 		switch (_getch()) {
@@ -219,7 +316,7 @@ int chooseMenu(string arrow, int arrowPos) {
 			}
 			else if (arrowPos == 1) {
 				system("cls");
-				chooseOptions(arrow, arrowPos);
+				chooseOptions(arrow, arrowPos, player);
 				arrowPos = 0;
 			}
 			else if (arrowPos == 2) {
@@ -238,7 +335,6 @@ int chooseMenu(string arrow, int arrowPos) {
 		system("cls");
 	}
 }
-
 void difficulty(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------------------------------*" << endl;
 	cout << ":                                                                                      :" << endl;
@@ -464,18 +560,17 @@ void winningText() {
 
 // this is the main function
 int main() {
-	system("color 7");
 	srand((unsigned int)time(NULL));
 
 	int cordY, cordX = 1;
 	int cellCount = 0;
 	char free = ' ';
-	char player = char(2);
+	char player = char(1);
 	int size;
 	string arrow = "-->";
 	int arrowPos = 0;
 
-	chooseMenu(arrow, arrowPos);
+	chooseMenu(arrow, arrowPos, &player);
 	chooseDifficulty(arrow, arrowPos, &size);
 	system("cls");
 
