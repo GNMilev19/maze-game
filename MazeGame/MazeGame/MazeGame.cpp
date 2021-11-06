@@ -30,19 +30,65 @@ void gotoxy(int x, int y) {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
-void menu(string& continu) {
-    cout << "*-------------------------------------*" << endl;
-    cout << ":                                     :" << endl;
-    cout << ":            The Maze Game            :" << endl;
-    cout << ":         by Team Anti-Xenon          :" << endl;
-    cout << ":                                     :" << endl;
-    cout << ":                                     :" << endl;
-    cout << ":        Press y/Y to continue        :" << endl;
-    cout << ":         Press anything else         :" << endl;
-    cout << ":              to quit                :" << endl;
-    cout << ":                                     :" << endl;
-    cout << "*-------------------------------------*" << endl;
-    getline(cin, continu);
+void menu(string arrow, int arrowPos) {
+
+    cout << "*--------------------------------------*" << endl;
+    cout << ":                                      :" << endl;
+    cout << ":  __   __  _______  _______  _______  :" << endl;
+    cout << ": |  |_|  ||   _   ||       ||       | :" << endl;
+    cout << ": |       ||  |_|  ||____   ||    ___| :" << endl;
+    cout << ": |       ||       | ____|  ||   |___  :" << endl;
+    cout << ": |       ||       || ______||    ___| :" << endl;
+    cout << ": | ||_|| ||   _   || |_____ |   |___  :" << endl;
+    cout << ": |_|   |_||__| |__||_______||_______| :" << endl;
+    cout << ":                                      :" << endl;
+    cout << ":                                      :" << endl;
+    if (arrowPos == 0)
+        cout << ":            " << arrow << "  Play                 :" << endl;
+    else
+        cout << ":                 Play                 :" << endl;
+    cout << ":                                      :" << endl;
+    if (arrowPos == 1)
+        cout << ":            " << arrow << "  Options              :" << endl;
+    else
+        cout << ":                 Options              :" << endl;
+    cout << ":                                      :" << endl;
+    if (arrowPos == 2)
+        cout << ":            " << arrow << "  Exit                 :" << endl;
+    else
+        cout << ":                 Exit                 :" << endl;
+    cout << ":                                      :" << endl;
+    cout << ":         Use space to choose          :" << endl;
+    cout << ":                                      :" << endl;
+    cout << "*--------------------------------------*" << endl;
+}
+
+int chooseMenu(string arrow, int arrowPos) {
+    bool choose = true;
+    while (1) {
+        menu(arrow, arrowPos);
+        switch (_getch()) {
+        case 32:
+            if (arrowPos == 0) {
+                system("cls");
+                cout << "Insert maze size: ";
+                return 0;
+            }
+            else if (arrowPos == 2) {
+                exit(0);
+            }
+            break;
+        case KEY_UP:
+            if (arrowPos != 0)
+                arrowPos--;
+            break;
+        case KEY_DOWN:
+            if (arrowPos != 2)
+                arrowPos++;
+            break;
+        }
+        system("cls");
+    }
 }
 
 // this function generates the maze,by previously entered size
@@ -263,36 +309,23 @@ int main() {
     char free = ' ';
     char player = char(2);
     int size;
-    string continu = "y";
-    string name;
+    string arrow = "-->";
+    int arrowPos = 0;
+    //string name;
     //getUserName(name);
-    system("cls");
-    do {
-        menu(continu);
-        if (continu == "y" || continu == "Y") {
-            system("cls");
-            cout << "*----------------------------*" << endl;
-            cout << "|                            |" << endl;
-            cout << "|Enter the size of the maze: |" << endl;
-            cout << "|                            |" << endl;
-            cout << "*----------------------------*" << endl;
-            cin >> size;
 
-            if (size <= 1) {
-                cout << "Enter a number of 2 and above! ";
-                cin >> size;
-            }
-        }
-        else {
-            exit(0);
-        }
-    } while (size <= 1);
+    chooseMenu(arrow, arrowPos);
+
+    cin >> size;
+
+    system("cls");
+    while (size <= 1);
     system("cls");
     cout << endl;
     cout << "Okay, let's see if you can do it!" << endl;
     cout << "---------------------------------" << endl;
     cout << endl;
-    do {
+
         cordY = 1;
 
         size = size * 2 + 1;
@@ -345,5 +378,4 @@ int main() {
             playerMovement(maze);
             system("cls");
         }
-    } while (continu == "y" || continu == "Y");
-}
+    }
