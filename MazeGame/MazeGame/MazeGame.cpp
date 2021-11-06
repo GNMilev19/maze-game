@@ -304,37 +304,7 @@ int chooseOptions(string arrow, int arrowPos, char* player) {
 	}
 }
 
-int chooseMenu(string arrow, int arrowPos, char* player) {
-	while (1) {
-		menu(arrow, arrowPos);
-		switch (_getch()) {
-		case 32:
-		case '\r':
-			if (arrowPos == 0) {
-				system("cls");
-				return 0;
-			}
-			else if (arrowPos == 1) {
-				system("cls");
-				chooseOptions(arrow, arrowPos, player);
-				arrowPos = 0;
-			}
-			else if (arrowPos == 2) {
-				exit(0);
-			}
-			break;
-		case KEY_UP:
-			if (arrowPos != 0)
-				arrowPos--;
-			break;
-		case KEY_DOWN:
-			if (arrowPos != 2)
-				arrowPos++;
-			break;
-		}
-		system("cls");
-	}
-}
+
 void difficulty(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------------------------------*" << endl;
 	cout << ":                                                                                      :" << endl;
@@ -384,6 +354,39 @@ int chooseDifficulty(string arrow, int arrowPos, int* size) {
 			else if (arrowPos == 2) {
 				*size = 20;
 				return 0;
+			}
+			break;
+		case KEY_UP:
+			if (arrowPos != 0)
+				arrowPos--;
+			break;
+		case KEY_DOWN:
+			if (arrowPos != 2)
+				arrowPos++;
+			break;
+		}
+		system("cls");
+	}
+}
+
+int chooseMenu(string arrow, int arrowPos, int* size, char* player) {
+	while (1) {
+		menu(arrow, arrowPos);
+		switch (_getch()) {
+		case 32:
+		case '\r':
+			if (arrowPos == 0) {
+				system("cls");
+				chooseDifficulty(arrow, arrowPos, size);
+				return 0;
+			}
+			else if (arrowPos == 1) {
+				system("cls");
+				chooseOptions(arrow, arrowPos, player);
+				arrowPos = 0;
+			}
+			else if (arrowPos == 2) {
+				exit(0);
 			}
 			break;
 		case KEY_UP:
@@ -570,8 +573,7 @@ int main() {
 	string arrow = "-->";
 	int arrowPos = 0;
 
-	chooseMenu(arrow, arrowPos, &player);
-	chooseDifficulty(arrow, arrowPos, &size);
+	chooseMenu(arrow, arrowPos, &size, &player);
 	system("cls");
 
 	cout << endl;
