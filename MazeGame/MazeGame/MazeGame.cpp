@@ -58,6 +58,7 @@ int chooseMenu(string arrow, int arrowPos) {
 		menu(arrow, arrowPos);
 		switch (_getch()) {
 		case 32:
+		case '\r':
 			if (arrowPos == 0) {
 				system("cls");
 				return 0;
@@ -116,6 +117,7 @@ int chooseDifficulty(string arrow, int arrowPos, int* size) {
 		difficulty(arrow, arrowPos);
 		switch (_getch()) {
 		case 32:
+		case '\r':
 			if (arrowPos == 0) {
 				*size = 3;
 				return 0;
