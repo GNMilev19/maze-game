@@ -244,6 +244,7 @@ void playerMovement(CELL** maze) {
 		else {
 			cout << endl;
 			cout << "Can't move there!";
+			if (_getch()) return;
 		}
 		break;
 	case KEY_DOWN:
@@ -257,6 +258,7 @@ void playerMovement(CELL** maze) {
 		else {
 			cout << endl;
 			cout << "Can't move there!";
+			if (_getch()) return;
 		}
 		break;
 	case KEY_LEFT:
@@ -270,6 +272,7 @@ void playerMovement(CELL** maze) {
 		else {
 			cout << endl;
 			cout << "Can't move there!";
+			if (_getch()) return;
 		}
 		break;
 	case KEY_RIGHT:
@@ -283,6 +286,7 @@ void playerMovement(CELL** maze) {
 		else {
 			cout << endl;
 			cout << "Can't move there!";
+			if(_getch()) return;
 		}
 		break;
 	}
