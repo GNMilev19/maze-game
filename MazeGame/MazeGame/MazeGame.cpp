@@ -52,6 +52,70 @@ void menu(string arrow, int arrowPos) {
 	cout << "*--------------------------------------*" << endl;
 }
 
+void options(string arrow, int arrowPos) {
+
+	cout << "*--------------------------------------------------------------*" << endl;
+	cout << ":                                                              :" << endl;
+	cout << ":  _______  _______  _______  ___   _______  __    _  _______  :" << endl;
+	cout << ": |       ||       ||       ||   | |       ||  |  | ||       | :" << endl;
+	cout << ": |   _   ||    _  ||_     _||   | |   _   ||   |_| ||  _____| :" << endl;
+	cout << ": |  | |  ||   |_| |  |   |  |   | |  | |  ||       || |_____  :" << endl;
+	cout << ": |  |_|  ||    ___|  |   |  |   | |  |_|  ||  _    ||_____  | :" << endl;
+	cout << ": |       ||   |      |   |  |   | |       || | |   | _____| | :" << endl;
+	cout << ": |_______||___|      |___|  |___| |_______||_|  |__||_______| :" << endl;
+	cout << ":                                                              :" << endl;
+	cout << ":                                                              :" << endl;
+	if (arrowPos == 0)
+		cout << ":                       " << arrow << "  Color                             :" << endl;
+	else
+		cout << ":                            Color                             :" << endl;
+	cout << ":                                                              :" << endl;
+	if (arrowPos == 1)
+		cout << ":                       " << arrow << "  Character                         :" << endl;
+	else
+		cout << ":                            Character                         :" << endl;
+	cout << ":                                                              :" << endl;
+	if (arrowPos == 2)
+		cout << ":                       " << arrow << "  Back                              :" << endl;
+	else
+		cout << ":                            Back                              :" << endl;
+	cout << ":                                                              :" << endl;
+	cout << ":                  Use Space or Enter to choose                :" << endl;
+	cout << ":                                                              :" << endl;
+	cout << "*--------------------------------------------------------------*" << endl;
+}
+
+int chooseOptions(string arrow, int arrowPos) {
+	arrowPos = 0;
+	while (1) {
+		options(arrow, arrowPos);
+		switch (_getch()) {
+		case 32:
+		case '\r':
+			if (arrowPos == 0) {
+				return 0;
+			}
+			else if (arrowPos == 1) {
+				return 0;
+			}
+			else if (arrowPos == 2) {
+				system("cls");
+				return 0;
+			}
+			break;
+		case KEY_UP:
+			if (arrowPos != 0)
+				arrowPos--;
+			break;
+		case KEY_DOWN:
+			if (arrowPos != 2)
+				arrowPos++;
+			break;
+		}
+		system("cls");
+	}
+}
+
 int chooseMenu(string arrow, int arrowPos) {
 	bool choose = true;
 	while (1) {
@@ -62,6 +126,11 @@ int chooseMenu(string arrow, int arrowPos) {
 			if (arrowPos == 0) {
 				system("cls");
 				return 0;
+			}
+			else if (arrowPos == 1) {
+				system("cls");
+				chooseOptions(arrow, arrowPos);
+				arrowPos = 0;
 			}
 			else if (arrowPos == 2) {
 				exit(0);
@@ -119,15 +188,15 @@ int chooseDifficulty(string arrow, int arrowPos, int* size) {
 		case 32:
 		case '\r':
 			if (arrowPos == 0) {
-				*size = 3;
-				return 0;
-			}
-			else if (arrowPos == 1) {
 				*size = 7;
 				return 0;
 			}
-			else if (arrowPos == 2) {
+			else if (arrowPos == 1) {
 				*size = 15;
+				return 0;
+			}
+			else if (arrowPos == 2) {
+				*size = 20;
 				return 0;
 			}
 			break;
@@ -292,14 +361,15 @@ bool freeCheck(int dir, int size, int cordY, int cordX) {
 
 //prints Winning text
 void winningText() {
-	cout << "*---------------------------------------------*" << endl;
-	cout << "|   __     __                    _       _    |\n"
-		"|   \\ \\   / /                   (_)     | |   |\n"
-		"|    \\ \\_/ /__  _   _  __      ___ _ __ | |   |\n"
-		"|     \\   / _ \\| | | | \\ \\ /\\ / / | '_ \\| |   |\n"
-		"|      | | (_) | |_| |  \\ V  V /| | | | |_|   |\n"
-		"|      |_|\\___/ \\__,_|   \\_/ \\_/|_|_| |_(_)   |\n";
-	cout << "*---------------------------------------------*" << endl;
+	cout << "*-----------------------------------------------------------*" << endl;
+	cout << "|  __   __  _______  __   __    _     _  ___   __    _  __  |" << endl;
+	cout << "| |  | |  ||       ||  | |  |  | | _ | ||   | |  |  | ||  | |" << endl;
+	cout << "| |  |_|  ||   _   ||  | |  |  | || || ||   | |   |_| ||  | |" << endl;
+	cout << "| |       ||  | |  ||  |_|  |  |       ||   | |       ||  | |" << endl;
+	cout << "| |_     _||  |_|  ||       |  |       ||   | |  _    ||__| |" << endl;
+	cout << "|   |   |  |       ||       |  |   _   ||   | | | |   | __  |" << endl;
+	cout << "|   |___|  |_______||_______|  |__| |__||___| |_|  |__||__| |" << endl;
+	cout << "*-----------------------------------------------------------*" << endl;
 }
 
 // this is the main function
