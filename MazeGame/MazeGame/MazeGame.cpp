@@ -85,6 +85,94 @@ void options(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------*" << endl;
 }
 
+void colorMenu(string arrow, int arrowPos) {
+
+	cout << "*---------------------------------------------------------*" << endl;
+	cout << ":                                                         :" << endl;
+	cout << ":  _______  _______  ___      _______  ______    _______  :" << endl;
+	cout << ": |       ||       ||   |    |       ||    _ |  |       | :" << endl;
+	cout << ": |       ||   _   ||   |    |   _   ||   | ||  |  _____| :" << endl;
+	cout << ": |       ||  | |  ||   |    |  | |  ||   |_||_ | |_____  :" << endl;
+	cout << ": |      _||  |_|  ||   |___ |  |_|  ||    __  ||_____  | :" << endl;
+	cout << ": |     |_ |       ||       ||       ||   |  | | _____| | :" << endl;
+	cout << ": |_______||_______||_______||_______||___|  |_||_______| :" << endl;
+	cout << ":                                                         :" << endl;
+	cout << ":                                                         :" << endl;
+	if (arrowPos == 0)
+		cout << ":                     " << arrow << "  Aqua                           :" << endl;
+	else
+		cout << ":                          Aqua                           :" << endl;
+	cout << ":                                                         :" << endl;
+	if (arrowPos == 1)
+		cout << ":                     " << arrow << "  Green                          :" << endl;
+	else
+		cout << ":                          Green                          :" << endl;
+	cout << ":                                                         :" << endl;
+	if (arrowPos == 2)
+		cout << ":                     " << arrow << "  Red                            :" << endl;
+	else
+		cout << ":                          Red                            :" << endl;
+	cout << ":                                                         :" << endl;
+	if (arrowPos == 3)
+		cout << ":                     " << arrow << "  Purple                         :" << endl;
+	else
+		cout << ":                          Purple                         :" << endl;
+	cout << ":                                                         :" << endl;
+	if (arrowPos == 4)
+		cout << ":                     " << arrow << "  White                          :" << endl;
+	else
+		cout << ":                          White                          :" << endl;
+	cout << ":                                                         :" << endl;
+	if (arrowPos == 5)
+		cout << ":                     " << arrow << "  Back                           :" << endl;
+	else
+		cout << ":                          Back                           :" << endl;
+	cout << ":                                                         :" << endl;
+	cout << ":                  Use Space or Enter to choose           :" << endl;
+	cout << ":                                                         :" << endl;
+	cout << "*-------------------------------------------------------------*" << endl;
+}
+
+int chooseColor(string arrow, int arrowPos) {
+	arrowPos = 0;
+	while (1) {
+		colorMenu(arrow, arrowPos);
+		switch (_getch()) {
+		case 32:
+		case '\r':
+			if (arrowPos == 0) {
+				system("color 3");
+			}
+			else if (arrowPos == 1) {
+				system("color 2");
+			}
+			else if (arrowPos == 2) {
+				system("color 4");
+			}
+			else if (arrowPos == 3) {
+				system("color 5");
+			}
+			else if (arrowPos == 4) {
+				system("color 7");
+			}
+			else if (arrowPos == 5) {
+				system("cls");
+				return 0;
+			}
+			break;
+		case KEY_UP:
+			if (arrowPos != 0)
+				arrowPos--;
+			break;
+		case KEY_DOWN:
+			if (arrowPos != 5)
+				arrowPos++;
+			break;
+		}
+		system("cls");
+	}
+}
+
 int chooseOptions(string arrow, int arrowPos) {
 	arrowPos = 0;
 	while (1) {
@@ -93,7 +181,9 @@ int chooseOptions(string arrow, int arrowPos) {
 		case 32:
 		case '\r':
 			if (arrowPos == 0) {
-				return 0;
+				system("cls");
+				chooseColor(arrow, arrowPos);
+				arrowPos = 0;
 			}
 			else if (arrowPos == 1) {
 				return 0;
@@ -374,7 +464,7 @@ void winningText() {
 
 // this is the main function
 int main() {
-	system("color 5");
+	system("color 7");
 	srand((unsigned int)time(NULL));
 
 	int cordY, cordX = 1;
