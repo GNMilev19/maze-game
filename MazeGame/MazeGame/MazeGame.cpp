@@ -47,7 +47,7 @@ void menu(string arrow, int arrowPos) {
 	else
 		cout << ":                 Exit                 :" << endl;
 	cout << ":                                      :" << endl;
-	cout << ":         Use space to choose          :" << endl;
+	cout << ":     Use Space or Enter to choose     :" << endl;
 	cout << ":                                      :" << endl;
 	cout << "*--------------------------------------*" << endl;
 }
@@ -107,7 +107,7 @@ void difficulty(string arrow, int arrowPos) {
 	else
 		cout << ":                                         Hard                                         :" << endl;
 	cout << ":                                                                                      :" << endl;
-	cout << ":                                 Use space to choose                                  :" << endl;
+	cout << ":                             Use Space or Enter to choose                             :" << endl;
 	cout << ":                                                                                      :" << endl;
 	cout << "*--------------------------------------------------------------------------------------*" << endl;
 }
