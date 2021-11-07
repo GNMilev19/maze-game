@@ -3,11 +3,13 @@
 #include <conio.h> //For _getch usage
 #include <string> //For string methods
 using namespace std;
+
 // #define is used to allow us to give a name to a constant value before the program is compiled
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
+
 struct CELL {
 	int playerY = 1;
 	int playerX = 0;
@@ -16,6 +18,7 @@ struct CELL {
 	bool isPlayer = false;
 };
 CELL playerCord;
+
 void menu(string arrow, int arrowPos) {
 	cout << "*--------------------------------------*" << endl;
 	cout << ":                                      :" << endl;
@@ -47,6 +50,7 @@ void menu(string arrow, int arrowPos) {
 	cout << ":                                      :" << endl;
 	cout << "*--------------------------------------*" << endl;
 }
+
 void options(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------*" << endl;
 	cout << ":                                                              :" << endl;
@@ -78,6 +82,7 @@ void options(string arrow, int arrowPos) {
 	cout << ":                                                              :" << endl;
 	cout << "*--------------------------------------------------------------*" << endl;
 }
+
 void colorMenu(string arrow, int arrowPos) {
 	cout << "*---------------------------------------------------------*" << endl;
 	cout << ":                                                         :" << endl;
@@ -124,6 +129,7 @@ void colorMenu(string arrow, int arrowPos) {
 	cout << ":                                                         :" << endl;
 	cout << "*-------------------------------------------------------------*" << endl;
 }
+
 int chooseColor(string arrow, int arrowPos) {
 	arrowPos = 0;
 	while (1) {
@@ -163,6 +169,7 @@ int chooseColor(string arrow, int arrowPos) {
 		system("cls");
 	}
 }
+
 void characterMenu(string arrow, int arrowPos) {
 	cout << "*-------------------------------------------------------------------------------------*" << endl;
 	cout << ":                                                                                     :" << endl;
@@ -214,6 +221,7 @@ void characterMenu(string arrow, int arrowPos) {
 	cout << ":                                                                                     :" << endl;
 	cout << "*-------------------------------------------------------------------------------------*" << endl;
 }
+
 int chooseCharacter(string arrow, int arrowPos, char* player) {
 	arrowPos = 0;
 	while (1) {
@@ -256,6 +264,7 @@ int chooseCharacter(string arrow, int arrowPos, char* player) {
 		system("cls");
 	}
 }
+
 int chooseOptions(string arrow, int arrowPos, char* player) {
 	arrowPos = 0;
 	while (1) {
@@ -291,7 +300,6 @@ int chooseOptions(string arrow, int arrowPos, char* player) {
 	}
 }
 
-
 void difficulty(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------------------------------*" << endl;
 	cout << ":                                                                                      :" << endl;
@@ -323,6 +331,7 @@ void difficulty(string arrow, int arrowPos) {
 	cout << ":                                                                                      :" << endl;
 	cout << "*--------------------------------------------------------------------------------------*" << endl;
 }
+
 int chooseDifficulty(string arrow, int arrowPos, int* size) {
 	while (1) {
 		difficulty(arrow, arrowPos);
@@ -405,6 +414,7 @@ void printMaze(CELL** maze, int size, char free, char player) {
 		cout << endl;
 	}
 }
+
 // this function generates the walls of the maze
 void createWalls(CELL** maze, int size, int* cellCount) {
 	for (int y = 0; y < size; y++) {
@@ -418,6 +428,8 @@ void createWalls(CELL** maze, int size, int* cellCount) {
 		}
 	}
 }
+
+//make cell into free cells
 void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells) {
 	switch (dir) {
 	case 0:
@@ -462,6 +474,7 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
 		break;
 	}
 }
+
 // this function checks if the player is trying to move towards a wall
 void playerMovement(CELL** maze) {
 	switch (_getch()) {
@@ -523,12 +536,15 @@ void playerMovement(CELL** maze) {
 		break;
 	}
 }
+
+//check if next cell is not a border
 bool freeCheck(int dir, int size, int cordY, int cordX) {
 	return (dir == 0 && cordY == 1) or
 		(dir == 2 && cordY == size - 2) or
 		(dir == 1 && cordX == size - 2) or
 		(dir == 3 && cordX == 1);
 }
+
 //prints Winning text
 void winningText() {
 	cout << "*-----------------------------------------------------------*" << endl;
@@ -541,6 +557,7 @@ void winningText() {
 	cout << "|   |___|  |_______||_______|  |__| |__||___| |_|  |__||__| |" << endl;
 	cout << "*-----------------------------------------------------------*" << endl;
 }
+
 // this is the main function
 int main() {
 	srand((unsigned int)time(NULL));
