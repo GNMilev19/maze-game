@@ -1,14 +1,33 @@
-# **Team Anti-Xenon**
-<hr>
+<p align = "center">
+  <img src = "https://gcdn.pbrd.co/images/9vYyNpXZYS48.png?o=1" alt = "logo">
+  </p>
+  
+  <h1 align = "center"> Anti-Xenon </h1>
+ 
 
-## *Our Team*
+   <hr>
+  <p align = "center" style:"font-size:4em">
+  <strong><big>
+  🔥 The best maze game ever published to the world! 🔥
+  </strong><big>
+  </p><hr>
+  <h1>💻 About  </h1>
+  <p> <big>
+     Our maze game makes the gaming experience on the next level with different options when you are playing it!
+   </big></p>
+   
 
-**•Georgi Milev - _Scrum Trainer_**
 
-**•Vasil Mladenov - _Back-end Developer_**
+  <h1>👀 Demo of our project </h1>
 
-**•Stanimir Dimitrov - _QA Developer_**
+  <img src  = "https://cdn.discordapp.com/attachments/875846683416727616/906966480200032276/unknown.png">
+  
+  
 
-**•Zhivko Nanev - _Front-end Developer_**
-
-![picture](https://github.blog/wp-content/uploads/2018/06/40890924-4bad5ce0-6732-11e8-9648-192aa71f0830.png?w=2048)
+  <p>
+    <h1> 👨‍💻 Our Team</h1>
+    <p> • <a href = "https://github.com/GNMilev19"> GNMilev19</a> - Scrum Trainer </p>
+	<p> • <a href = "https://github.com/VLMladenov19"> VLMladenov19</a> - Back-end Developer </p>
+	<p> • <a href = "https://github.com/SMDimitrov19"> SMDimitrov19</a> - QA Developer </p>
+	<p> • <a href = "https://github.com/ZDNanev19"> ZDNanev19</a> - Front-end Developer </p>
+	</p>
