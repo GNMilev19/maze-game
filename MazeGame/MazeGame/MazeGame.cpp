@@ -304,7 +304,6 @@ int chooseOptions(string arrow, int arrowPos, char* player) {
 	}
 }
 
-
 void difficulty(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------------------------------*" << endl;
 	cout << ":                                                                                      :" << endl;
