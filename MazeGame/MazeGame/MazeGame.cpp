@@ -544,6 +544,7 @@ void winningText() {
 // this is the main function
 int main() {
 	srand((unsigned int)time(NULL));
+
 	int cordY, cordX = 1;
 	int cellCount = 0;
 	char free = ' ';
@@ -552,7 +553,6 @@ int main() {
 	string arrow = "-->";
 	int arrowPos = 0;
 
-
 	chooseMenu(arrow, arrowPos, &size, &player);
 	system("cls");
 
@@ -560,18 +560,25 @@ int main() {
 	cout << "Good, luck!" << endl;
 	cout << "*---------*" << endl;
 	cout << endl;
+
 	cordY = 1;
+
 	size = size * 2 + 1;
+
 	CELL** maze = new CELL * [size];
 	for (int i = 0; i < size; i++) {
 		maze[i] = new CELL[size];
 	}
+
 	maze[cordY][cordX - 1].isPlayer = true;
 	maze[cordY][cordX - 1].isVisited = true;
 	maze[size - 2][size - 1].isVisited = true;
+
 	createWalls(maze, size, &cellCount);
+
 	maze[cordY][cordX - 1].isWall = false;
 	maze[size - 2][size - 1].isWall = false;
+
 	bool unvisitedCheck = true;
 	int unvisitedCells = 0;
 	while (unvisitedCheck) {
@@ -584,6 +591,7 @@ int main() {
 		} while (freeCheck(dir, size, cordY, cordX));
 		toVisited(maze, &cordY, &cordX, dir, &unvisitedCells);
 	}
+
 	bool playerWon = true;
 	while (playerWon) {
 		if (maze[size - 2][size - 1].isPlayer == true) {
@@ -599,7 +607,7 @@ int main() {
 		cout << "|    Use the arrows or     |" << endl;
 		cout << "|         W,A,S,D          |" << endl;
 		cout << "|                          |" << endl;
-		cout << "*--------------------------*";
+		cout << "*--------------------------*" << endl;
 		playerMovement(maze);
 		system("cls");
 	}
