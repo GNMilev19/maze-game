@@ -327,6 +327,11 @@ void difficulty(string arrow, int arrowPos) {
 	else
 		cout << ":                                         Hard                                         :" << endl;
 	cout << ":                                                                                      :" << endl;
+	if (arrowPos == 3)
+		cout << ":                                    " << arrow << "  Custom                                       :" << endl;
+	else
+		cout << ":                                         Custom                                       :" << endl;
+	cout << ":                                                                                      :" << endl;
 	cout << ":                             Use Space or Enter to choose                             :" << endl;
 	cout << ":                                                                                      :" << endl;
 	cout << "*--------------------------------------------------------------------------------------*" << endl;
@@ -350,13 +355,18 @@ int chooseDifficulty(string arrow, int arrowPos, int* size) {
 				*size = 20;
 				return 0;
 			}
+			else if (arrowPos == 3) {
+				cout << "Please, input maze size: ";
+				cin >> *size;
+				return 0;
+			}
 			break;
 		case KEY_UP:
 			if (arrowPos != 0)
 				arrowPos--;
 			break;
 		case KEY_DOWN:
-			if (arrowPos != 2)
+			if (arrowPos != 3)
 				arrowPos++;
 			break;
 		}
@@ -373,7 +383,10 @@ int chooseMenu(string arrow, int arrowPos, int* size, char* player) {
 			if (arrowPos == 0) {
 				system("cls");
 				chooseDifficulty(arrow, arrowPos, size);
-				return 0;
+				switch (arrowPos) {
+				case 3: arrowPos = 0; break;
+				default: return 0; break;
+				}
 			}
 			else if (arrowPos == 1) {
 				system("cls");
