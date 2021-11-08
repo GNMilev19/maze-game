@@ -19,23 +19,7 @@ struct CELL {
 };
 CELL playerCord;
 
-void gotoxy(int x, int y) {
-	COORD pos;
-	pos.X = x;
-	pos.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-}
-
-void drawSprite(int x, int y, char player) {
-	gotoxy(x, y);
-	cout << player;
-}
-
-void eraseSprite(int x, int y) {
-	gotoxy(x, y);
-	cout << " ";
-}
-
+//Prints Main menu
 void menu(string arrow, int arrowPos) {
 	cout << "*--------------------------------------*" << endl;
 	cout << ":                                      :" << endl;
@@ -68,6 +52,7 @@ void menu(string arrow, int arrowPos) {
 	cout << "*--------------------------------------*" << endl;
 }
 
+//Prints Options menu
 void options(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------*" << endl;
 	cout << ":                                                              :" << endl;
@@ -100,6 +85,7 @@ void options(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------*" << endl;
 }
 
+//Prints Color Options menu
 void colorMenu(string arrow, int arrowPos) {
 	cout << "*---------------------------------------------------------*" << endl;
 	cout << ":                                                         :" << endl;
@@ -147,6 +133,7 @@ void colorMenu(string arrow, int arrowPos) {
 	cout << "*-------------------------------------------------------------*" << endl;
 }
 
+//Used to choose color option
 int chooseColor(string arrow, int arrowPos) {
 	arrowPos = 0;
 	while (1) {
@@ -191,6 +178,7 @@ int chooseColor(string arrow, int arrowPos) {
 	}
 }
 
+//Prints Character Options menu
 void characterMenu(string arrow, int arrowPos) {
 	cout << "*-------------------------------------------------------------------------------------*" << endl;
 	cout << ":                                                                                     :" << endl;
@@ -243,7 +231,8 @@ void characterMenu(string arrow, int arrowPos) {
 	cout << "*-------------------------------------------------------------------------------------*" << endl;
 }
 
-int chooseCharacter(string arrow, int arrowPos, char* player) {
+//Used for chosing character symbol menu
+int chooseCharacter(string arrow, int arrowPos, char* playerSym) {
 	arrowPos = 0;
 	while (1) {
 		characterMenu(arrow, arrowPos);
@@ -251,22 +240,22 @@ int chooseCharacter(string arrow, int arrowPos, char* player) {
 		case 32:
 		case '\r':
 			if (arrowPos == 0) {
-				*player = char(1);
+				*playerSym = char(1);
 			}
 			else if (arrowPos == 1) {
-				*player = char(2);
+				*playerSym = char(2);
 			}
 			else if (arrowPos == 2) {
-				*player = char(3);
+				*playerSym = char(3);
 			}
 			else if (arrowPos == 3) {
-				*player = char(4);
+				*playerSym = char(4);
 			}
 			else if (arrowPos == 4) {
-				*player = char(5);
+				*playerSym = char(5);
 			}
 			else if (arrowPos == 5) {
-				*player = char(6);
+				*playerSym = char(6);
 			}
 			else if (arrowPos == 6) {
 				system("cls");
@@ -290,7 +279,8 @@ int chooseCharacter(string arrow, int arrowPos, char* player) {
 	}
 }
 
-int chooseOptions(string arrow, int arrowPos, char* player) {
+//Used for choosing which option to change
+int chooseOptions(string arrow, int arrowPos, char* playerSym) {
 	arrowPos = 0;
 	while (1) {
 		options(arrow, arrowPos);
@@ -304,7 +294,7 @@ int chooseOptions(string arrow, int arrowPos, char* player) {
 			}
 			else if (arrowPos == 1) {
 				system("cls");
-				chooseCharacter(arrow, arrowPos, player);
+				chooseCharacter(arrow, arrowPos, playerSym);
 				arrowPos = 0;
 			}
 			else if (arrowPos == 2) {
@@ -329,6 +319,7 @@ int chooseOptions(string arrow, int arrowPos, char* player) {
 	}
 }
 
+//Prints Difficulty menu
 void difficulty(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------------------------------*" << endl;
 	cout << ":                                                                                      :" << endl;
@@ -366,6 +357,7 @@ void difficulty(string arrow, int arrowPos) {
 	cout << "*--------------------------------------------------------------------------------------*" << endl;
 }
 
+//Used for choosing Game Difficulty
 int chooseDifficulty(string arrow, int arrowPos, int* size) {
 	while (1) {
 		difficulty(arrow, arrowPos);
@@ -407,7 +399,8 @@ int chooseDifficulty(string arrow, int arrowPos, int* size) {
 	}
 }
 
-int chooseMenu(string arrow, int arrowPos, int* size, char* player) {
+//Choose whether to Play, change Options or Exit
+int chooseMenu(string arrow, int arrowPos, int* size, char* playerSym) {
 	while (1) {
 		menu(arrow, arrowPos);
 		switch (_getch()) {
@@ -423,7 +416,7 @@ int chooseMenu(string arrow, int arrowPos, int* size, char* player) {
 			}
 			else if (arrowPos == 1) {
 				system("cls");
-				chooseOptions(arrow, arrowPos, player);
+				chooseOptions(arrow, arrowPos, playerSym);
 				arrowPos = 0;
 			}
 			else if (arrowPos == 2) {
@@ -448,11 +441,11 @@ int chooseMenu(string arrow, int arrowPos, int* size, char* player) {
 }
 
 // this function generates the maze,by previously entered size
-void printMaze(CELL** maze, int size, char free, char player) {
+void printMaze(CELL** maze, int size, char free, char playerSym) {
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
 			if (maze[i][j].isPlayer == true) {
-				cout << player << " ";
+				cout << playerSym << " ";
 			}
 			else if (maze[i][j].isVisited == true) {
 				cout << free << " ";
@@ -610,18 +603,18 @@ void winningText() {
 
 // this is the main function
 int main() {
-	srand((unsigned int)time(NULL));
+	srand((unsigned int)time(NULL)); //To give us different random numbers every time
 
 	int cordY, cordX;
 	int cellCount = 0;
 	char free = ' ';
-	char player = char(1);
+	char playerSym = char(1); //
 	int size;
 	string arrow = "-->";
 	int arrowPos = 0;
 	
 	while (1) {
-		chooseMenu(arrow, arrowPos, &size, &player);
+		chooseMenu(arrow, arrowPos, &size, &playerSym);
 		system("cls");
 
 		cout << endl;
@@ -643,7 +636,7 @@ int main() {
 		maze[cordY][cordX - 1].isPlayer = true;
 		maze[cordY][cordX - 1].isVisited = true;
 		maze[size - 2][size - 1].isVisited = true;
-		maze[size - 2][size - 1].isPlayer == false;
+		maze[size - 2][size - 1].isPlayer = false;
 		playerCord.playerY = 1;
 		playerCord.playerX = 0;
 
@@ -685,7 +678,7 @@ int main() {
 				}
 			}
 			else {
-				printMaze(maze, size, free, player);
+				printMaze(maze, size, free, playerSym);
 
 				cout << "\n";
 				cout << "*--------------------------*" << endl;
