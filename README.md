@@ -40,15 +40,19 @@
             <li>White</li>
           </ol>
         <li>Choose player character: </li>
-          <ol>Not filled face</ol>
-          <ol>Filled face</ol>
-          <ol>Hearts</ol>
-          <ol>Diamonds</ol>
-          <ol>Clubs</ol>
-          <ol>Spades</ol>
+          <ol>
+            <li>Not filled face</li>
+            <li>Filled face</li>
+            <li>Hearts</li>
+            <li>Diamonds</li>
+            <li>Clubs</li>
+            <li>Spades</li>
+          </ol>
       </ul>
-    <li>Third option is "Exit": </li>
+    <li>Third option is "Exit"</li>
   </ul>
+
+  <br>
 
   <p>
     <h1> 👨‍💻 Our Team</h1>
