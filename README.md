@@ -1,5 +1,5 @@
 <p align = "center">
-  <img src = "https://gcdn.pbrd.co/images/9vYyNpXZYS48.png?o=1" alt = "logo">
+  <img src = "https://raw.githubusercontent.com/GNMilev19/maze-game/master/Documents/Images/anti-xenonLogo.png?token=AQANQXQJYE65JK3RYOLZZ4TBRFVDA" alt = "logo">
   </p>
   
   <h1 align = "center"> Anti-Xenon </h1>
