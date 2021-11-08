@@ -15,6 +15,12 @@
   <h1>👀 Demo of our project </h1>
 
   <img src  = "https://cdn.discordapp.com/attachments/875846683416727616/906966480200032276/unknown.png">
+
+  <h1>📥 How to Download</h1>
+  <p>To download our game you need to do just one thing: <br>
+    1. Clone it.
+    <pre>git clone https://github.com/GNMilev19/maze-game.git</pre>
+  </p>
   
   <h1>⌨️ How to start</h1>
   <p><big>You start of by opening the Main Menu:</big></p>
@@ -51,8 +57,6 @@
       </ul>
     <li>Third option is "Exit"</li>
   </ul>
-
-  <br>
 
   <p>
     <h1> 👨‍💻 Our Team</h1>
