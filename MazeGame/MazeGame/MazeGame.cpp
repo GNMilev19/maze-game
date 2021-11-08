@@ -158,10 +158,14 @@ int chooseColor(string arrow, int arrowPos) {
 			}
 			break;
 		case KEY_UP:
+		case 'W':
+		case 'w':
 			if (arrowPos != 0)
 				arrowPos--;
 			break;
 		case KEY_DOWN:
+		case 'S':
+		case 's':
 			if (arrowPos != 5)
 				arrowPos++;
 			break;
@@ -253,10 +257,14 @@ int chooseCharacter(string arrow, int arrowPos, char* player) {
 			}
 			break;
 		case KEY_UP:
+		case 'W':
+		case 'w':
 			if (arrowPos != 0)
 				arrowPos--;
 			break;
 		case KEY_DOWN:
+		case 'S':
+		case 's':
 			if (arrowPos != 6)
 				arrowPos++;
 			break;
@@ -288,10 +296,14 @@ int chooseOptions(string arrow, int arrowPos, char* player) {
 			}
 			break;
 		case KEY_UP:
+		case 'W':
+		case 'w':
 			if (arrowPos != 0)
 				arrowPos--;
 			break;
 		case KEY_DOWN:
+		case 'S':
+		case 's':
 			if (arrowPos != 2)
 				arrowPos++;
 			break;
@@ -362,10 +374,14 @@ int chooseDifficulty(string arrow, int arrowPos, int* size) {
 			}
 			break;
 		case KEY_UP:
+		case 'W':
+		case 'w':
 			if (arrowPos != 0)
 				arrowPos--;
 			break;
 		case KEY_DOWN:
+		case 'S':
+		case 's':
 			if (arrowPos != 3)
 				arrowPos++;
 			break;
@@ -398,10 +414,14 @@ int chooseMenu(string arrow, int arrowPos, int* size, char* player) {
 			}
 			break;
 		case KEY_UP:
+		case 'W':
+		case 'w':
 			if (arrowPos != 0)
 				arrowPos--;
 			break;
 		case KEY_DOWN:
+		case 'S':
+		case 's':
 			if (arrowPos != 2)
 				arrowPos++;
 			break;
@@ -575,70 +595,91 @@ void winningText() {
 int main() {
 	srand((unsigned int)time(NULL));
 
-	int cordY, cordX = 1;
+	int cordY, cordX;
 	int cellCount = 0;
 	char free = ' ';
 	char player = char(1);
 	int size;
 	string arrow = "-->";
 	int arrowPos = 0;
-
-	chooseMenu(arrow, arrowPos, &size, &player);
-	system("cls");
-
-	cout << endl;
-	cout << "Good, luck!" << endl;
-	cout << "*---------*" << endl;
-	cout << endl;
-
-	cordY = 1;
-
-	size = size * 2 + 1;
-
-	CELL** maze = new CELL * [size];
-	for (int i = 0; i < size; i++) {
-		maze[i] = new CELL[size];
-	}
-
-	maze[cordY][cordX - 1].isPlayer = true;
-	maze[cordY][cordX - 1].isVisited = true;
-	maze[size - 2][size - 1].isVisited = true;
-
-	createWalls(maze, size, &cellCount);
-
-	maze[cordY][cordX - 1].isWall = false;
-	maze[size - 2][size - 1].isWall = false;
-
-	bool unvisitedCheck = true;
-	int unvisitedCells = 0;
-	while (unvisitedCheck) {
-		if (unvisitedCells == cellCount) {
-			unvisitedCheck = false;
-		}
-		int dir;
-		do {
-			dir = rand() % 4;
-		} while (freeCheck(dir, size, cordY, cordX));
-		toVisited(maze, &cordY, &cordX, dir, &unvisitedCells);
-	}
-
-	bool playerWon = true;
-	while (playerWon) {
-		if (maze[size - 2][size - 1].isPlayer == true) {
-			system("cls");
-			winningText();
-			exit(0);
-		}
-		printMaze(maze, size, free, player);
-		cout << "\n";
-		cout << "*--------------------------*" << endl;
-		cout << "|                          |" << endl;
-		cout << "|       Instructions:      |" << endl;
-		cout << "|    Use the arrows or     |" << endl;
-		cout << "|         W,A,S,D          |" << endl;
-		cout << "|                          |" << endl;
-		cout << "*--------------------------*" << endl;
-		playerMovement(maze);
+	
+	while (1) {
+		chooseMenu(arrow, arrowPos, &size, &player);
 		system("cls");
+
+		cout << endl;
+		cout << "Good, luck!" << endl;
+		cout << "*---------*" << endl;
+		cout << endl;
+
+		cordY = 1;
+		cordX = 1;
+		cellCount = 0;
+
+		size = size * 2 + 1;
+
+		CELL** maze = new CELL * [size];
+		for (int i = 0; i < size; i++) {
+			maze[i] = new CELL[size];
+		}
+
+		maze[cordY][cordX - 1].isPlayer = true;
+		maze[cordY][cordX - 1].isVisited = true;
+		maze[size - 2][size - 1].isVisited = true;
+		maze[size - 2][size - 1].isPlayer == false;
+		playerCord.playerY = 1;
+		playerCord.playerX = 0;
+
+		createWalls(maze, size, &cellCount);
+
+		maze[cordY][cordX - 1].isWall = false;
+		maze[size - 2][size - 1].isWall = false;
+
+		bool unvisitedCheck = true;
+		int unvisitedCells = 0;
+		while (unvisitedCheck) {
+			if (unvisitedCells == cellCount) {
+				unvisitedCheck = false;
+			}
+			int dir;
+			do {
+				dir = rand() % 4;
+			} while (freeCheck(dir, size, cordY, cordX));
+			toVisited(maze, &cordY, &cordX, dir, &unvisitedCells);
+		}
+
+		bool playerWon = true;
+		while (playerWon) {
+			if (maze[size - 2][size - 1].isPlayer == true) {
+				system("cls");
+				winningText();
+				cout << "Want to play again? Y/N";
+				
+				switch (_getch()) {
+				case 'Y':
+				case 'y':
+					system("cls");
+					playerWon = false;
+					break;
+				case 'N':
+				case 'n':
+					exit(0);
+					break;
+				}
+			}
+			else {
+				printMaze(maze, size, free, player);
+				cout << "\n";
+				cout << "*--------------------------*" << endl;
+				cout << "|                          |" << endl;
+				cout << "|       Instructions:      |" << endl;
+				cout << "|    Use the arrows or     |" << endl;
+				cout << "|         W,A,S,D          |" << endl;
+				cout << "|                          |" << endl;
+				cout << "*--------------------------*" << endl;
+				playerMovement(maze);
+				system("cls");
+			}
+		}
 	}
 }
