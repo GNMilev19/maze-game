@@ -19,6 +19,23 @@ struct CELL {
 };
 CELL playerCord;
 
+void gotoxy(int x, int y) {
+	COORD pos;
+	pos.X = x;
+	pos.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+
+void drawSprite(int x, int y, char player) {
+	gotoxy(x, y);
+	cout << player;
+}
+
+void eraseSprite(int x, int y) {
+	gotoxy(x, y);
+	cout << " ";
+}
+
 void menu(string arrow, int arrowPos) {
 	cout << "*--------------------------------------*" << endl;
 	cout << ":                                      :" << endl;
@@ -669,6 +686,7 @@ int main() {
 			}
 			else {
 				printMaze(maze, size, free, player);
+
 				cout << "\n";
 				cout << "*--------------------------*" << endl;
 				cout << "|                          |" << endl;
