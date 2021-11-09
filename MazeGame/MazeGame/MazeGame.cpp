@@ -592,7 +592,7 @@ int main() {
 	int size;
 	string arrow = "-->";
 	int arrowPos = 0;
-	
+
 	while (1) {
 		chooseMenu(arrow, arrowPos, &size, &playerSym);
 		system("cls");
@@ -644,7 +644,7 @@ int main() {
 				system("cls");
 				winningText();
 				cout << "Want to play again? Y/N";
-				
+
 				switch (_getch()) {
 				case 'Y':
 				case 'y':

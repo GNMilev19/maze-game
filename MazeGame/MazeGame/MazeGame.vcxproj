@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ff09f194-9a9b-42e5-bf72-6f845f1bedc3}</ProjectGuid>
+    <ProjectGuid>{3b5e6f1e-d4a0-4b0d-81cd-4843365be64a}</ProjectGuid>
     <RootNamespace>MazeGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
