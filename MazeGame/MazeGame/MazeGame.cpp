@@ -529,11 +529,6 @@ void playerMovement(CELL** maze) {
 			playerCord.playerY -= 1;
 			maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
 		}
-		else {
-			cout << endl;
-			cout << "Can't move there!";
-			if (_getch()) return;
-		}
 		break;
 	case KEY_DOWN:
 	case 115:
@@ -542,11 +537,6 @@ void playerMovement(CELL** maze) {
 			maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
 			playerCord.playerY += 1;
 			maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
-		}
-		else {
-			cout << endl;
-			cout << "Can't move there!";
-			if (_getch()) return;
 		}
 		break;
 	case KEY_LEFT:
@@ -557,11 +547,6 @@ void playerMovement(CELL** maze) {
 			playerCord.playerX -= 1;
 			maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
 		}
-		else {
-			cout << endl;
-			cout << "Can't move there!";
-			if (_getch()) return;
-		}
 		break;
 	case KEY_RIGHT:
 	case 100:
@@ -570,11 +555,6 @@ void playerMovement(CELL** maze) {
 			maze[playerCord.playerY][playerCord.playerX].isPlayer = false;
 			playerCord.playerX += 1;
 			maze[playerCord.playerY][playerCord.playerX].isPlayer = true;
-		}
-		else {
-			cout << endl;
-			cout << "Can't move there!";
-			if (_getch()) return;
 		}
 		break;
 	}
