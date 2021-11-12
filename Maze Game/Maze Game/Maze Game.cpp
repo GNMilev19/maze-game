@@ -21,7 +21,7 @@ struct CELL {
 CELL playerCord;
 
 //Used to replace 'system("cls")'
-void ClearScreen()
+void clearScreen()
 {
 	COORD cursorPosition;	
 
@@ -186,7 +186,7 @@ int chooseColor(string arrow, int arrowPos) {
 				arrowPos++;
 			break;
 		}
-		ClearScreen();
+		clearScreen();
 	}
 }
 
@@ -287,7 +287,7 @@ int chooseCharacter(string arrow, int arrowPos, char* playerSym) {
 				arrowPos++;
 			break;
 		}
-		ClearScreen();
+		clearScreen();
 	}
 }
 
@@ -327,7 +327,7 @@ int chooseOptions(string arrow, int arrowPos, char* playerSym) {
 				arrowPos++;
 			break;
 		}
-		ClearScreen();
+		clearScreen();
 	}
 }
 
@@ -411,7 +411,7 @@ int chooseDifficulty(string arrow, int arrowPos, int* size) {
 				arrowPos++;
 			break;
 		}
-		ClearScreen();
+		clearScreen();
 	}
 }
 
@@ -452,7 +452,7 @@ int chooseMenu(string arrow, int arrowPos, int* size, char* playerSym) {
 				arrowPos++;
 			break;
 		}
-		ClearScreen();
+		clearScreen();
 	}
 }
 
@@ -507,7 +507,7 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
 			maze[*cordY][*cordX + 2].isWall = false;
 			maze[*cordY][*cordX + 1].isVisited = true;
 			maze[*cordY][*cordX + 1].isWall = false;
-			++* unvisitedCells++;
+			++* unvisitedCells;
 		}
 		*cordX += 2;
 		break;
@@ -517,7 +517,7 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
 			maze[*cordY + 2][*cordX].isWall = false;
 			maze[*cordY + 1][*cordX].isVisited = true;
 			maze[*cordY + 1][*cordX].isWall = false;
-			++* unvisitedCells++;
+			++* unvisitedCells;
 		}
 		*cordY += 2;
 		break;
@@ -527,7 +527,7 @@ void toVisited(CELL** maze, int* cordY, int* cordX, int dir, int* unvisitedCells
 			maze[*cordY][*cordX - 2].isWall = false;
 			maze[*cordY][*cordX - 1].isVisited = true;
 			maze[*cordY][*cordX - 1].isWall = false;
-			++* unvisitedCells++;
+			++* unvisitedCells;
 		}
 		*cordX -= 2;
 		break;
@@ -679,7 +679,7 @@ int main() {
 				cout << "|                          |" << endl;
 				cout << "*--------------------------*" << endl;
 				playerMovement(maze);
-				ClearScreen();
+				clearScreen();
 			}
 		}
 	}
