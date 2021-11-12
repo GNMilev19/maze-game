@@ -19,6 +19,17 @@ struct CELL {
 };
 CELL playerCord;
 
+//Used to replace 'system("cls")'
+void ClearScreen()
+{
+	COORD cursorPosition;	
+
+	cursorPosition.X = 0;	
+	cursorPosition.Y = 0;	
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
+}
+
 //Prints Main menu
 void menu(string arrow, int arrowPos) {
 	cout << "*--------------------------------------*" << endl;
@@ -130,7 +141,7 @@ void colorMenu(string arrow, int arrowPos) {
 	cout << ":                                                         :" << endl;
 	cout << ":                  Use Space or Enter to choose           :" << endl;
 	cout << ":                                                         :" << endl;
-	cout << "*-------------------------------------------------------------*" << endl;
+	cout << "*---------------------------------------------------------*" << endl;
 }
 
 //Used to choose color option
@@ -174,7 +185,7 @@ int chooseColor(string arrow, int arrowPos) {
 				arrowPos++;
 			break;
 		}
-		system("cls");
+		ClearScreen();
 	}
 }
 
@@ -275,7 +286,7 @@ int chooseCharacter(string arrow, int arrowPos, char* playerSym) {
 				arrowPos++;
 			break;
 		}
-		system("cls");
+		ClearScreen();
 	}
 }
 
@@ -315,7 +326,7 @@ int chooseOptions(string arrow, int arrowPos, char* playerSym) {
 				arrowPos++;
 			break;
 		}
-		system("cls");
+		ClearScreen();
 	}
 }
 
@@ -366,19 +377,23 @@ int chooseDifficulty(string arrow, int arrowPos, int* size) {
 		case '\r':
 			if (arrowPos == 0) {
 				*size = 7;
+				system("cls");
 				return 0;
 			}
 			else if (arrowPos == 1) {
 				*size = 15;
+				system("cls");
 				return 0;
 			}
 			else if (arrowPos == 2) {
 				*size = 20;
+				system("cls");
 				return 0;
 			}
 			else if (arrowPos == 3) {
 				cout << "Please, input maze size: ";
 				cin >> *size;
+				system("cls");
 				return 0;
 			}
 			break;
@@ -395,7 +410,7 @@ int chooseDifficulty(string arrow, int arrowPos, int* size) {
 				arrowPos++;
 			break;
 		}
-		system("cls");
+		ClearScreen();
 	}
 }
 
@@ -436,7 +451,7 @@ int chooseMenu(string arrow, int arrowPos, int* size, char* playerSym) {
 				arrowPos++;
 			break;
 		}
-		system("cls");
+		ClearScreen();
 	}
 }
 
@@ -460,10 +475,10 @@ void printMaze(CELL** maze, int size, char free, char playerSym) {
 
 // this function generates the walls of the maze
 void createWalls(CELL** maze, int size, int* cellCount) {
-	for (int y = 0; y < size; y++) {
-		for (int x = 0; x < size; x++) {
-			if ((x % 2 == 0) || (y % 2 == 0)) {
-				maze[y][x].isWall = true;
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if ((j % 2 == 0) || (i % 2 == 0)) {
+				maze[i][j].isWall = true;
 			}
 			else {
 				++* cellCount;
@@ -595,12 +610,6 @@ int main() {
 
 	while (1) {
 		chooseMenu(arrow, arrowPos, &size, &playerSym);
-		system("cls");
-
-		cout << endl;
-		cout << "Good, luck!" << endl;
-		cout << "*---------*" << endl;
-		cout << endl;
 
 		cordY = 1;
 		cordX = 1;
@@ -669,7 +678,7 @@ int main() {
 				cout << "|                          |" << endl;
 				cout << "*--------------------------*" << endl;
 				playerMovement(maze);
-				system("cls");
+				ClearScreen();
 			}
 		}
 	}
