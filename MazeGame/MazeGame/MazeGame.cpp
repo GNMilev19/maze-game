@@ -588,11 +588,11 @@ int main() {
 	int cordY, cordX;
 	int cellCount = 0;
 	char free = ' ';
-	char playerSym = char(1); //
+	char playerSym = char(1);
 	int size;
 	string arrow = "-->";
 	int arrowPos = 0;
-	
+
 	while (1) {
 		chooseMenu(arrow, arrowPos, &size, &playerSym);
 		system("cls");
@@ -644,7 +644,7 @@ int main() {
 				system("cls");
 				winningText();
 				cout << "Want to play again? Y/N";
-				
+
 				switch (_getch()) {
 				case 'Y':
 				case 'y':
